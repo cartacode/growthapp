@@ -3,20 +3,19 @@ import PropTypes from 'prop-types'
 import {
   View,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native'
 import Theme from '../../../theme';
 import { MainContainer,
   HeadingText,
   TextFieldContainer,
+  ForgotText,
+  ForgotTextContainer,
   ButtonContianer,
-  ContentContainer,
-HeadingTextContainer } from './style';
-import TextInput from '../../components/textfield/CustomTextField';
-import CustomButton from '../../components/button/CustomButton';
-import Card from '../../components/giftCardPopup/giftCard'
-
-  class SignupScreen extends React.Component {
+  ContentContainer } from './style';
+  import TextInput from '../../components/textfield/CustomTextField';
+  import CustomButton from '../../components/button/CustomButton';
+  class LoginScreen extends React.Component {
     static navigationOptions = {
       headerVisible:false,
       headerStyle:{
@@ -30,27 +29,24 @@ import Card from '../../components/giftCardPopup/giftCard'
           <ContentContainer>
           <TextFieldContainer>
             <TextInput
-              label={'First Name'}
-              width={260} />
-          </TextFieldContainer>
-          <TextFieldContainer>
-            <TextInput
-              label={'Last Name'}
-              width={260} />
-          </TextFieldContainer>
-          <TextFieldContainer>
-            <TextInput
               label={'Email Address'}
               width={260} />
           </TextFieldContainer>
+          <TextFieldContainer>
+            <TextInput
+              label={'Password'}
+              width={260} />
+          </TextFieldContainer>
+          <ForgotTextContainer onPress={()=>{
+            this.props.setModalVisible(true,'Recover Password');
+            }}>
+            <ForgotText> Forgot Password? </ForgotText>
+          </ForgotTextContainer>
           <ButtonContianer>
             <CustomButton
-              onPress={()=>{
-                this.props.setModalVisible(true,'Create a Wallet');
-              }}
               fill={Theme.colors.lightBlue}
               width="260"
-              text="Next"/>
+              text="Submit"/>
           </ButtonContianer>
           </ContentContainer>
         </View>
@@ -58,4 +54,4 @@ import Card from '../../components/giftCardPopup/giftCard'
     }
   }
 
-  export default SignupScreen ;
+  export default LoginScreen ;
