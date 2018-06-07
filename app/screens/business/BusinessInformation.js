@@ -11,12 +11,12 @@ import { MainContainer,
   TextFieldContainer,
   ButtonContianer,
   ContentContainer,
-HeadingTextContainer } from './style';
+HeadingTextContainer,
+CityContainer } from './style';
 import TextInput from '../../components/textfield/CustomTextField';
 import CustomButton from '../../components/button/CustomButton';
-import Card from '../../components/giftCardPopup/giftCard'
 
-  class SignupScreen extends React.Component {
+  class BusinessInformation extends React.Component {
     static navigationOptions = {
       headerVisible:false,
       headerStyle:{
@@ -24,33 +24,43 @@ import Card from '../../components/giftCardPopup/giftCard'
         height:0,
       },
     }
+
     render () {
       return(
         <View style={{flex:1}}>
           <ContentContainer>
           <TextFieldContainer>
             <TextInput
-              label={'First Name'}
+              label={'Business Name'}
               width={260} />
           </TextFieldContainer>
           <TextFieldContainer>
             <TextInput
-              label={'Last Name'}
+              label={'Business Address'}
               width={260} />
+          </TextFieldContainer>
+          <CityContainer>
+          <TextFieldContainer>
+            <TextInput
+              label={'City'}
+              width={120} />
           </TextFieldContainer>
           <TextFieldContainer>
             <TextInput
-              label={'Email Address'}
+              label={'State'}
+              width={120} />
+          </TextFieldContainer>
+        </CityContainer>
+          <TextFieldContainer>
+            <TextInput
+              label={'Zip Code'}
               width={260} />
           </TextFieldContainer>
           <ButtonContianer>
             <CustomButton
-              onPress={()=>{
-                this.props.setModalVisible(true,'Create a Wallet');
-              }}
               fill={Theme.colors.lightBlue}
               width="260"
-              text="Next"/>
+              text="Submit"/>
           </ButtonContianer>
           </ContentContainer>
         </View>
@@ -58,4 +68,4 @@ import Card from '../../components/giftCardPopup/giftCard'
     }
   }
 
-  export default SignupScreen ;
+  export default BusinessInformation ;

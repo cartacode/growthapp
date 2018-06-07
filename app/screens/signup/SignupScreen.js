@@ -14,7 +14,6 @@ import { MainContainer,
 HeadingTextContainer } from './style';
 import TextInput from '../../components/textfield/CustomTextField';
 import CustomButton from '../../components/button/CustomButton';
-import Card from '../../components/giftCardPopup/giftCard'
 
   class SignupScreen extends React.Component {
     static navigationOptions = {
@@ -43,10 +42,20 @@ import Card from '../../components/giftCardPopup/giftCard'
               label={'Email Address'}
               width={260} />
           </TextFieldContainer>
+          <TextFieldContainer>
+            <TextInput
+              label={'Password'}
+              width={260} />
+          </TextFieldContainer>
+          <TextFieldContainer>
+            <TextInput
+              label={'Confrim Password'}
+              width={260} />
+          </TextFieldContainer>
           <ButtonContianer>
             <CustomButton
               onPress={()=>{
-                this.props.setModalVisible(true,'Create a Wallet');
+                this.props.setModalVisible(true,'Business Information');
               }}
               fill={Theme.colors.lightBlue}
               width="260"
