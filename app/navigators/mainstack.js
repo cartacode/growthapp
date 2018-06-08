@@ -1,5 +1,7 @@
 
 import HomeScreen from '../screens/home/HomeScreen';
+import MainScreen from '../screens/main/MainScreen'
+import MarketingScreen from '../screens/marketing/MarketingScreen'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -14,6 +16,8 @@ const navigationOptions = {
 };
 const Mainstack = StackNavigator({
   Home:{ screen: HomeScreen},
+  Main:{ screen: MainScreen },
+  Marketing:{ screen: MarketingScreen }
 },
 	{
     navigationOptions,
