@@ -12,13 +12,15 @@ export const PromotionCard = styled.View`
 elevation:2px;
 background-color:#ffffff;
 margin-top:20px;
-
+padding-bottom:20px;
+height:690px;
 `;
 export const CardContainer = styled.View`
-padding:15px 15px 25px 15px;
+padding:20px 15px 20px 15px;
 elevation:2px;
 background-color:#ffffff;
 margin-top:20px;
+height:145px;
 
 `;
 export const PromotionTitle = styled.View`
@@ -32,7 +34,7 @@ export const TitleContainer = styled.View`
 export const ButtonContainer = styled.View`
 align-items:center;
 justify-content:center;
-margin-top:15px;
+margin-top:20px;
 `;
 export const TitleText = styled.Text`
 color:${props => Theme.colors.darkGray};

@@ -12,6 +12,7 @@ export default  Theme = {
     PromotionBlue:'#00acc1',
     skyBlue:'#1e88e5',
     blue:'#42a5f5',
+    warmGrey:'#9e9e9e',
   },
   fontFamily:{
     bold: 'NunitoSans-Bold',

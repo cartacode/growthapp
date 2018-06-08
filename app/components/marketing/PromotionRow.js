@@ -3,18 +3,24 @@ import PropTypes from 'prop-types'
 import {
   View,ScrollView,
   Text,
+  Image,
   TouchableOpacity,
-  KeyboardAvoidingView
+  Switch,
 } from 'react-native'
 import Theme from '../../../theme';
 import {
   MainContainer,
-  ContentContainer,
-  CardContainer,
-  TitleContainer,
   ButtonContainer,
+  RowContainer,
   TitleText,
-} from './style';
+  ContentText,
+  DetailContianer,
+  ImageContainer,
+  SwitchContainer,
+  ContentContaner,
+  BottomRowContainer,
+  ActiveText,
+} from './PromotionRowStyle.js';
 import CustomButton from '../button/CustomButton';
 
 class PromotionRow extends React.Component {
@@ -25,22 +31,68 @@ class PromotionRow extends React.Component {
       height:0,
     },
   }
+  constructor() {
+    super();
+    this.state = {
+      switchValue: false,
+    }
+  }
+  toggleSwitch = (value) => {
+    this.setState({switchValue: value})
+  }
 
   render () {
+    let data = this.props.data ? this.props.data : ''
     return(
-        <View>
-        <TitleContainer>
-          <TitleText>Hello</TitleText>
-        </TitleContainer>
+      <MainContainer>
+        <RowContainer>
+          <ImageContainer>
+            <Image
+            source={require('../../../assets/images/layer-1.png')} style={{width:120,height:70}}/>
+        </ImageContainer>
+        <DetailContianer>
+          <TitleText>{data.title}</TitleText>
+          <ContentText>{data.description} </ContentText>
+        </DetailContianer>
+      </RowContainer>
+      <BottomRowContainer>
+        <SwitchContainer>
+        <Switch
+          onValueChange = {this.toggleSwitch}
+          value={this.state.switchValue}
+          onTintColor="#e3e5ef"
+          thumbTintColor={Theme.colors.skyBlue}
+          tintColor="#e3e5ef"/>
+        </SwitchContainer>
+        <SwitchContainer>
+        <ActiveText>Active</ActiveText>
+        </SwitchContainer>
         <ButtonContainer>
           <CustomButton
-          fill={Theme.colors.violet}
-          width="280"
-          text="My Promotions"/>
+            border={"#e0e0e0"}
+            textColor={"#757575"}
+            fontSize={Theme.fontSize.small}
+            width="96"
+            height="33"
+            text="Edit Promotion"/>
         </ButtonContainer>
-      </View>
-    )
-  }
+        <ButtonContainer>
+          <CustomButton
+            border={"#e0e0e0"}
+            textColor={"#757575"}
+            fontSize={Theme.fontSize.small}
+
+            width="85"
+            height="33"
+
+            text="Analytics"/>
+        </ButtonContainer>
+
+      </BottomRowContainer>
+
+    </MainContainer>
+  )
+}
 }
 
 export default PromotionRow;

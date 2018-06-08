@@ -29,13 +29,13 @@ class Marketing extends React.Component {
 
   render () {
     return(
-        <ScrollView style={{backgroundColor:'#FAFAFA',flex:1,paddingBottom:20}} contentContainerStyle={{justifyContent:'center',alignItems:'center'}}>
-          <RowItem title="New Promotion" color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
-          <RowItem title="Analytics" color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
-          <RowItem title="Loyalty Program" color={Theme.colors.lightBlue} buttonTitle="Create Loyalty Campaign" />
-          <RowItem title="Loyalty Program" color={Theme.colors.lightBlue} buttonTitle="Create Loyalty Campaign" />
-          <Promotion/>
-        </ScrollView>
+      <ScrollView contentContainerStyle={{paddingBottom:20,alignItems:'center',justifyContent:'center'}}>
+        <RowItem title="New Promotion" color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
+        <RowItem title="Analytics" color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
+        <RowItem title="Loyalty Program" color={Theme.colors.violet} buttonTitle="Create Loyalty Campaign" />
+        <Promotion />
+
+      </ScrollView>
     )
   }
 }

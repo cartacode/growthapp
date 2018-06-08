@@ -19,15 +19,15 @@ import {
 } from './style';
 import CustomButton from '../button/CustomButton';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
-var { height, width } = Dimensions.get("window");
-import PromotionRow from './PromotionRow'
+let { height, width } = Dimensions.get("window");
+import ActivePromotion from './ActivePromotion'
 const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
 
-const FirstRoute = () => <PromotionRow/>;
-const SecondRoute = () => <View/>;
+const FirstRoute = () => <View/>;
+const SecondRoute = () => <ActivePromotion/>;
 const ThirdRoute = () => <View />;
 
 class Promotion extends React.Component {
@@ -41,7 +41,7 @@ class Promotion extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      index: 0,
+      index: 1,
       routes: [
         { key:'0', title: 'All' },
         { key:'1', title: 'Active' },
@@ -69,12 +69,13 @@ class Promotion extends React.Component {
     />
 </TabContainer>
   _renderScene = SceneMap({
-    0: () =>  <PromotionRow />,
-    1: () => <View />,
+    0: () =>  <View />,
+    1: () => <ActivePromotion />,
     2:() => <View />,
   });
   render () {
     return(
+
         <PromotionCard>
           <PromotionTitle>
               <TitleText>My Promotions</TitleText>
