@@ -23,6 +23,6 @@ const Mainstack = StackNavigator({
 },
 	{
     navigationOptions,
-	initialRouteName: 'Account',
+	initialRouteName: 'Home',
 });
 export default Mainstack;

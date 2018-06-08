@@ -4,7 +4,8 @@ import { View,
   Dimensions } from 'react-native';
 import CustomIcon from '../../components/icon/svgicon';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
-import Marketing from '../../components/marketing/Marketing'
+import Marketing from '../../components/marketing/Marketing';
+import Account from '../../components/account/Account';
 let { height, width } = Dimensions.get("window");
 
   const initialLayout = {
@@ -15,7 +16,7 @@ let { height, width } = Dimensions.get("window");
   const FirstRoute = () => <View />;
 const SecondRoute = () => <Marketing/>;
 const ThirdRoute = () => <View />;
-const FourthRoute = () => <View />;
+const FourthRoute = () => <Account />;
 
 class MarketingScreen extends React.Component {
   static navigationOptions = {
@@ -66,7 +67,7 @@ class MarketingScreen extends React.Component {
       0: () =>  <View />,
       1: () => <Marketing />,
       2:() => <View />,
-      3:() => <View />
+      3:() => <Account />
 });
 
 render() {

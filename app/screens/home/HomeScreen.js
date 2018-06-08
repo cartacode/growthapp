@@ -94,7 +94,7 @@ import {MainContainer,
                   this.state.modalName=='Sign Up'?
                   <SignupScreen  setModalVisible={this.setModalVisible}/>
                   :this.state.modalName=='Log In'?
-                    <LoginScreen setModalVisible={this.setModalVisible}/>
+                    <LoginScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
                   :
                 <BusinessInformation navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
                 }

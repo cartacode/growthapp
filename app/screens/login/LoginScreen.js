@@ -23,6 +23,10 @@ import { MainContainer,
         height:0,
       },
     }
+    handleSubmit = () =>{
+      this.props.setModalVisible(false);
+      this.props.navigation.navigate('Main');
+    }
     render () {
       return(
         <View style={{flex:1}}>
@@ -44,6 +48,7 @@ import { MainContainer,
           </ForgotTextContainer>
           <ButtonContianer>
             <CustomButton
+              onPress={this.handleSubmit}
               fill={Theme.colors.lightBlue}
               width="260"
               text="Submit"/>
