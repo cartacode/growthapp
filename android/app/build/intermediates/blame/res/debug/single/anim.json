@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_slide_down.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_slide_down.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_push_up_in.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_push_up_in.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_push_up_out.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_push_up_out.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_slide_up.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_slide_up.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_fade_out.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_fade_out.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/anim/catalyst_fade_in.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/81de06e3b0e55360439eade1f2ab69f7/res/anim/catalyst_fade_in.xml"
+    }
+]
