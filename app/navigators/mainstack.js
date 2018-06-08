@@ -3,6 +3,7 @@ import HomeScreen from '../screens/home/HomeScreen';
 import AccountScreen from '../components/account/Account';
 import MainScreen from '../screens/main/MainScreen'
 import MarketingScreen from '../screens/marketing/MarketingScreen'
+import AddPromotion from '../screens/Promotion/promotion.js'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -19,7 +20,8 @@ const Mainstack = StackNavigator({
   Home:{ screen: HomeScreen},
   Account:{ screen: AccountScreen},
   Main:{ screen: MainScreen },
-  Marketing:{ screen: MarketingScreen }
+  Marketing:{ screen: MarketingScreen },
+  Promotion: { screen:AddPromotion },
 },
 	{
     navigationOptions,

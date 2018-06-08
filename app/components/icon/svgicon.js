@@ -282,6 +282,5 @@ export default class CustomIcon extends Component {
         </Svg>
       );
     }
->>>>>>> add promotion screen added
   }
 }
