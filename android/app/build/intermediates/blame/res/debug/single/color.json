@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_text_dark.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/8224bd83956dc003546d3348d9dbbe7b/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_tint.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/8224bd83956dc003546d3348d9dbbe7b/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_text_light.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/8224bd83956dc003546d3348d9dbbe7b/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/home/apexa/Documents/projects/balehumarketplace/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/home/apexa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/292da74c0d55523e6ce5f3d7f1d1d5a4/res/color/abc_primary_text_material_light.xml"
+    }
+]
