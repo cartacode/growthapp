@@ -17,7 +17,6 @@ import SettingComponent from "../settings/Settings";
 import Notifiaction from "../notification/Notification";
 import CustomIcon from '../icon/svgicon';
 import Card from '../giftCardPopup/giftCard';
-import TranscationHistory from '../../screens/history/TranscationHistory';
 var { height, width } = Dimensions.get("window");
 const initialLayout = {
   height: 0,
@@ -29,19 +28,14 @@ const SecondRoute = () => <SettingComponent />;
 
 class AccountScreen extends React.Component {
 
-  static navigationOptions = navigation => ({
-    headerTitle: <HeaderTitle title="Add friend" />,
-  headerLeft: (
-    <HeaderLeftIcon
-      accessible={true}
-      style={{ marginTop: 8 }}
-      accessibilityLabel="Close"
-      icon="close"
-      {...navigation}
-      />
-  ),
-  headerRight: <View />
-});
+  static navigationOptions = {
+    headerVisible:false,
+    headerStyle:{
+      width:0,
+      height:0,
+    },
+  }
+
 state = {
   index: 0,
   routes: [
@@ -131,33 +125,6 @@ render() {
         <NotificationText>1</NotificationText>
       </NotificationContainer>
       </Tabcontainer>
-      <Modal
-      animationType="slide"
-      transparent={true}
-      visible={this.state.modalVisible}
-      >
-      <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-        <IconContainer onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}>
-          <CustomIcon
-            name="cross"
-            fill='#000000'
-            height="15"
-            width="15"
-            />
-        </IconContainer>
-        <ScrollView>
-          <Card title={this.state.modalName=='Receive Coins'?'':this.state.modalName}>
-            {
-              this.state.modalName=='Transaction History'?
-              <TranscationHistory navigation={this.props.navigation} />
-              :null
-            }
-          </Card>
-        </ScrollView>
-      </View>
-    </Modal>
     </MainContainer>
   );
 }

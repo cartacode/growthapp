@@ -1,5 +1,6 @@
 
 import HomeScreen from '../screens/home/HomeScreen';
+import AccountScreen from '../components/account/Account';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -14,9 +15,10 @@ const navigationOptions = {
 };
 const Mainstack = StackNavigator({
   Home:{ screen: HomeScreen},
+  Account:{ screen: AccountScreen},
 },
 	{
     navigationOptions,
-	initialRouteName: 'Home',
+	initialRouteName: 'Account',
 });
 export default Mainstack;

@@ -1,15 +1,9 @@
 import styled from "styled-components/native";
 import Theme from '../../../theme';
 
-export const HeadingTextContainer = styled.View`
-margin:0px 0px 10px 0px;
-`;
-
 export const ContentContainer = styled.View`
 display:flex;
-min-height:430px;
-padding:20px;
-align-items:center;
+margin-top:-30px;
 `;
 
 export const HeadingText = styled.Text`
@@ -26,7 +20,7 @@ margin-top:20px;
 `;
 
 export const ButtonContianer = styled.View`
-  margin-top:20px;
+  margin-top:40px;
 `;
 
 export const TextInputContainer = styled.View`
