@@ -9,7 +9,10 @@ export default  Theme = {
     inputBackgroundColor:'#EEEEEE',
     redBalehu:'#e63d30',
     twitterBlue:'#5c9eff',
-    PromotionBlue:'#00acc1'
+    PromotionBlue:'#00acc1',
+    skyBlue:'#1e88e5',
+    blue:'#42a5f5',
+    warmGrey:'#9e9e9e',
   },
   fontFamily:{
     bold: 'NunitoSans-Bold',
