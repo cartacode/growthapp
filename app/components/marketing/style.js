@@ -47,3 +47,19 @@ border-bottom-width:1px;
 border-bottom-color: #DCDCDC;
 width:320;
 `;
+
+export const IconContainer = styled.TouchableOpacity`
+background-color:#ffffff;
+width:45px;
+height:45px;
+padding:11px 0px;
+position:absolute;
+top:18px;
+right:4px;
+z-index:9999999;
+border-radius:70px;
+justify-content:center;
+align-items:center;
+margin-top:10px;
+elevation:5
+`;

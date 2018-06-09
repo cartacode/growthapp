@@ -6,9 +6,10 @@ import {
   ImageBackground,
   Modal,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+
 } from 'react-native'
-import { MainContainer, PromotionContainer, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, BitTextInput, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText } from './style';
+import { MainContainer, DropdownContainer,PromotionContainer,BitTextInput,MainWrapper, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText,ModalIconContainer } from './style';
 import CustomButton from '../../components/button/CustomButton';
 import TextInputBox from '../../components/textfield/CustomTextField';
 import RadioForm, {
@@ -21,7 +22,10 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { RichTextEditor, RichTextToolbar, actions } from 'react-native-zss-rich-text-editor';
 import CustomIcon from '../../components/icon/svgicon'
 import ImagePicker from 'react-native-image-crop-picker';
-
+import HeaderRightIcon from '../../components/header/HeaderRightIcon';
+import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
+import Card from '../../components/giftCardPopup/giftCard';
+import SaveChanges from './SaveChanges';
 
 
 let radio_props = [
@@ -48,13 +52,11 @@ let data2 = [
 ]
 
 class PromotionScreen extends React.Component {
-  static navigationOptions = {
-    headerVisible:false,
-    headerStyle:{
-      width:0,
-      height:0,
-    },
-  }
+  static navigationOptions = (navigation) => ({
+    headerTitle:(<View/>),
+    headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
+    headerRight: (<View/>),
+  })
 
   constructor() {
     super();
@@ -68,7 +70,9 @@ class PromotionScreen extends React.Component {
       DataProps:'',
       mode:true,
       htmlText:'',
-      updatedHTMLText:''
+      updatedHTMLText:'',
+      modalVisible: false,
+      modalName:''
     };
   }
 
@@ -146,6 +150,9 @@ class PromotionScreen extends React.Component {
       }, 500)
     }
   }
+  setModalVisible = (visible,modal) => {
+    this.setState({modalVisible: visible,modalName:modal});
+  }
 
   render () {
     let catagory = [{
@@ -165,7 +172,7 @@ class PromotionScreen extends React.Component {
     let DataProps = this.state.DataProps
     console.warn(this.state.mode);
     return(
-      <MainContainer>
+      <MainWrapper>
       <ScrollView>
         <PromotionContainer>
           <TitleText>{DataProps ? 'Edit Promotion' : 'Create New Promotion'}</TitleText>
@@ -201,7 +208,7 @@ class PromotionScreen extends React.Component {
           <CommonContainer>
             <TextInputBox
               label={"Headline"}
-              width={320}
+              width={280}
               placeholder="Enter Promotion’s Title"
               onChangeText={(text) => this.setState({headline:text})}
               value={DataProps.title ? DataProps.title : ''}
@@ -340,10 +347,13 @@ class PromotionScreen extends React.Component {
 
           <CommonContainer>
             <HeadingText>Category</HeadingText>
+            <DropdownContainer>
             <Dropdown
               data={catagory}
+              inputContainerStyle={{ borderBottomColor: 'transparent',marginTop:-15}}
               placeholder={"Select catgory"}
             />
+          </DropdownContainer>
           </CommonContainer>
 
           <CommonContainer>
@@ -372,11 +382,13 @@ class PromotionScreen extends React.Component {
             }
             </DayContainer>
             <DropContainer>
+            <DropdownContainer>
             <Dropdown
               data={days}
               placeholder={"All Day"}
-              underlineColorAndroid="transparent"
+              inputContainerStyle={{ borderBottomColor: 'transparent',marginTop:-15}}
             />
+            </DropdownContainer>
             </DropContainer>
           </CommonContainer>
 
@@ -448,13 +460,44 @@ class PromotionScreen extends React.Component {
         </MarketPlaceContainer>
         <ButtonContainer>
           <CustomButton
+            onPress={() => {
+              this.setModalVisible(true,'Save Changes');
+            }}
             fill={Theme.colors.lightBlue}
             width="310"
             text="Save Promotion"
             />
         </ButtonContainer>
         </ScrollView>
-      </MainContainer>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        >
+        <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
+          <ModalIconContainer onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}>
+            <CustomIcon
+              name="cross"
+              fill='#000000'
+              height="15"
+              width="15"
+              />
+          </ModalIconContainer>
+          <ScrollView>
+            <Card title={this.state.modalName}>
+              {
+                this.state.modalName=='Save Changes'?
+                <SaveChanges  setModalVisible={this.setModalVisible}/>
+                :
+              null
+              }
+            </Card>
+          </ScrollView>
+        </View>
+      </Modal>
+    </MainWrapper>
     )
   }
 }
