@@ -66,8 +66,8 @@ class MarketingScreen extends React.Component {
 
     _renderScene = SceneMap({
       0: () =>  <View />,
-      1: () => <Marketing />,
-      2:() => <Wallet />,
+      1: () => <Marketing navigation={this.props.navigation} />,
+      2:() => <View />,
       3:() => <Account />
 });
 

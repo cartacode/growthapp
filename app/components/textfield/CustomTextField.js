@@ -31,6 +31,8 @@ class CustomTextField extends React.Component {
             underlineColorAndroid="transparent"
             placeholder={this.props.placeholder}
             secureTextEntry={this.props.secureTextEntry ? this.props.secureTextEntry : false}
+            value={this.props.value}
+            onChangeText={this.props.onChangeText}
         />
       </View>
     )

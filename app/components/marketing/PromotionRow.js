@@ -74,14 +74,18 @@ class PromotionRow extends React.Component {
             fontSize={Theme.fontSize.small}
             width="96"
             height="33"
-            text="Edit Promotion"/>
+            text="Edit Promotion"
+            data={data}
+            onPress={()=>{
+              this.props.navigation.navigate('Promotion',{index:data});
+            }}
+            />
         </ButtonContainer>
         <ButtonContainer>
           <CustomButton
             border={"#e0e0e0"}
             textColor={"#757575"}
             fontSize={Theme.fontSize.small}
-
             width="85"
             height="33"
 

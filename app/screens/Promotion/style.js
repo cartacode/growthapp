@@ -111,3 +111,12 @@ export const DayText = styled.Text`
   font-family:${props=> Theme.fontFamily.regular};
   font-size:${props=> Theme.fontSize.midregular};
 `
+
+export const BitTextInput = styled.TextInput`
+  height: 40px;
+  padding:10px;
+  font-size:${props=> Theme.fontSize.midregular};
+  fontFamily:${props=>Theme.fontFamily.regular}
+  color:${props=>Theme.colors.warmGrey};
+  backgroundColor: ${props=>Theme.colors.inputBackgroundColor};
+`;

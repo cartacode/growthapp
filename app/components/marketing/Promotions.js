@@ -70,7 +70,7 @@ class Promotion extends React.Component {
 </TabContainer>
   _renderScene = SceneMap({
     0: () =>  <View />,
-    1: () => <ActivePromotion />,
+    1: () => <ActivePromotion navigation={this.props.navigation}/>,
     2:() => <View />,
   });
   render () {

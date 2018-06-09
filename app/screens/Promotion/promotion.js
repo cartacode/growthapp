@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native'
-import { MainContainer, PromotionContainer, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText } from './style';
+import { MainContainer, PromotionContainer, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, BitTextInput, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText } from './style';
 import CustomButton from '../../components/button/CustomButton';
 import TextInputBox from '../../components/textfield/CustomTextField';
 import RadioForm, {
@@ -64,9 +64,22 @@ class PromotionScreen extends React.Component {
       selectedOptionPause:null,
       selectedOptionLocation:null,
       selectedDay:'',
-      text:''
+      text:'',
+      DataProps:'',
+      mode:true,
+      htmlText:'',
+      updatedHTMLText:''
     };
   }
+
+  componentWillMount() {
+    if(this.props.navigation.state.params){
+      this.setState({
+        DataProps:this.props.navigation.state.params.index
+      })
+    }
+  }
+
   handleRadioClick = e => {
     this.setState({
       selectedOptionOffer: e
@@ -85,6 +98,17 @@ class PromotionScreen extends React.Component {
     });
   };
 
+  uploadImage = () => {
+    ImagePicker.openPicker({
+      includeBase64: true,
+      compressImageQuality: 0.5
+    })
+    .then(image => {
+      let imageSrc = `data:${image.mime};base64,${image.data}`;
+      console.log(imageSrc);
+    });
+  }
+
   imagePicker = () => {
     ImagePicker.openPicker({
       includeBase64: true,
@@ -98,42 +122,60 @@ class PromotionScreen extends React.Component {
   }
 
   handleDay = e => {
-    console.warn(e);
     this.setState({
       selectedDay:this.state.selectedDay == e ?'': e
     })
   }
 
-  render () {
-    let data1 = [{
-      value: 'First',
-    }, {
-      value: 'Seconde',
-    }, {
-      value: 'Third',
-    }];
+  getHtml = () => {
+    if (this.state.mode === true){
+      this.richtext.getContentHtml().then((html)=>{
+        this.setState({
+          mode:!this.state.mode,
+          updatedHTMLText:html
+        })
+      })
+    }
+    else{
+      this.setState({
+        mode:!this.state.mode
+      })
 
+      setTimeout(()=>{
+        this.richtext.setContentHTML(this.state.updatedHTMLText);
+      }, 500)
+    }
+  }
+
+  render () {
+    let catagory = [{
+      value: 'Food',
+    }, {
+      value: 'Fast-Food',
+    }, {
+      value: 'Diet',
+    }];
+    let days = [{
+      value: 'All Day',
+    }, {
+      value: 'Next week',
+    }, {
+      value: 'Next months',
+    }];
+    let DataProps = this.state.DataProps
+    console.warn(this.state.mode);
     return(
       <MainContainer>
       <ScrollView>
         <PromotionContainer>
-          <TitleText>Create New Promotion</TitleText>
-          <CommonContainer>
-            <HeadingText>Picture</HeadingText>
-            <CustomButton
-              fill={Theme.colors.twitterBlue}
-              width="120"
-              text="Upload file"
-              />
-          </CommonContainer>
-
-          <CommonContainer>
-        {
-            this.props.image ?
+          <TitleText>{DataProps ? 'Edit Promotion' : 'Create New Promotion'}</TitleText>
+          {
+            DataProps.picture ?
+            <CommonContainer>
             <ImageBackground
               source={require('../../../assets/images/layer-1.png')}
               resizeMode="cover"
-              style={{ height: 130, position: "relative",width:500}}
+              style={{ height: 130, position: "relative",width:320}}
               >
               <ImageButtonContainer>
                 <CustomButton
@@ -142,35 +184,48 @@ class PromotionScreen extends React.Component {
                   text="Change Picture"
                   />
               </ImageButtonContainer>
-            </ImageBackground>: null}
-          </CommonContainer>
+            </ImageBackground>
+            </CommonContainer>
+            :
+            <CommonContainer>
+              <HeadingText>Picture</HeadingText>
+              <CustomButton
+                fill={Theme.colors.twitterBlue}
+                width="120"
+                text="Upload file"
+                onPress={this.uploadImage}
+                />
+            </CommonContainer>
+          }
 
           <CommonContainer>
             <TextInputBox
-            label={"Headline"}
-            width={320}
-            placeholder="Enter Promotion’s Title"
+              label={"Headline"}
+              width={320}
+              placeholder="Enter Promotion’s Title"
+              onChangeText={(text) => this.setState({headline:text})}
+              value={DataProps.title ? DataProps.title : ''}
             />
           </CommonContainer>
 
           <CommonContainer>
             <HeadingText>Details</HeadingText>
             <ToolBar>
-              <IconContainer onPress={() => this.richtext.setBold()}>
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setBold() : ()=>{}}>
                 <CustomIcon
                   name="bold"
                   height="14"
                   width="14"
                 />
                 </IconContainer>
-                <IconContainer italic onPress={() => this.richtext.setItalic()}>
+                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1}  italic onPress={() => this.state.mode ? this.richtext.setItalic() : ()=>{}}>
                   <CustomIcon
                     name="italic"
                     height="12"
                     width="12"
                   />
                   </IconContainer>
-                  <IconContainer onPress={() => this.richtext.setUnderline()}>
+                  <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setUnderline() : ()=>{}}>
                     <CustomIcon
                       name="underline"
                       height="14"
@@ -186,7 +241,7 @@ class PromotionScreen extends React.Component {
                     />
                   </IconContainer>
 
-                  <IconContainer>
+                  <IconContainer onPress={this.getHtml}>
                     <CustomIcon
                       name="code"
                       height="14"
@@ -194,14 +249,14 @@ class PromotionScreen extends React.Component {
                     />
                   </IconContainer>
 
-                <IconContainer onPress={this.imagePicker}>
+                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  this.imagePicker : ()=>{}}>
                   <CustomIcon
                       name="picture"
                       height="14"
                       width="14"
                   />
                  </IconContainer>
-                 <IconContainer onPress={() => {this.richtext.prepareInsert(),this.richtext.showLinkDialog(optionalTitle = '', optionalUrl = '')}}>
+                 <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  () => {this.richtext.prepareInsert(),this.richtext.showLinkDialog(optionalTitle = '', optionalUrl = '')} : ()=>{}}>
                   <CustomIcon
                       name="link"
                       height="14"
@@ -209,15 +264,26 @@ class PromotionScreen extends React.Component {
                     />
                   </IconContainer>
             </ToolBar>
-            <RichTextEditor
+          {
+              this.state.mode ?
+              <RichTextEditor
               ref={(r) => this.richtext = r}
-              hiddenTitle
+              hiddenTitle={true}
               style={{height:100,backgroundColor:Theme.colors.inputBackgroundColor}}
               contentPlaceholder="Enter Promotion’s Description"
-              customCSS={{flex:1,flexDirection: 'column-reverse'}}
+              initialContentHTML={DataProps.description? DataProps.description : '' }
+              customCSS={{fontSize:10,fontFamily:Theme.fontFamily.regular,color:Theme.colors.warmGrey}}
               editorInitializedCallback={() => this.onEditorInitialized()}
             />
-
+            :
+            <TextInput
+               onChangeText={(updatedHTMLText) => this.setState({updatedHTMLText})}
+               value={this.state.updatedHTMLText}
+               multiline = {true}
+               numberOfLines = {4}
+               underlineColorAndroid="transparent"
+               style={{backgroundColor:Theme.colors.inputBackgroundColor,height:100}}
+             />}
           </CommonContainer>
 
           <CommonContainer>
@@ -257,11 +323,11 @@ class PromotionScreen extends React.Component {
             <InputContainer>
               {
                 this.state.selectedOptionOffer == 0 ?
-                  <TextInput
-                    style={{height: 40, backgroundColor: Theme.colors.inputBackgroundColor}}
+                  <BitTextInput
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
                     placeholder="Enter bit coin"
+                    placeholderTextColor={Theme.colors.warmGrey}
                     underlineColorAndroid="transparent"
                 />: null}
               </InputContainer>
@@ -275,7 +341,7 @@ class PromotionScreen extends React.Component {
           <CommonContainer>
             <HeadingText>Category</HeadingText>
             <Dropdown
-              data={data1}
+              data={catagory}
               placeholder={"Select catgory"}
             />
           </CommonContainer>
@@ -307,7 +373,7 @@ class PromotionScreen extends React.Component {
             </DayContainer>
             <DropContainer>
             <Dropdown
-              data={data1}
+              data={days}
               placeholder={"All Day"}
               underlineColorAndroid="transparent"
             />
