@@ -59,7 +59,7 @@ class ActivePromotion extends React.Component {
              keyExtractor={(item, index) => item.id}
              data={data}
              renderItem={({ item }) => (
-               <PromotionRow data={item} />
+               <PromotionRow navigation={this.props.navigation} data={item} />
              )} />
       </View>
     )

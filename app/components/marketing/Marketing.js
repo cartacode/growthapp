@@ -33,7 +33,7 @@ class Marketing extends React.Component {
         <RowItem title="New Promotion" color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
         <RowItem title="Analytics" color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
         <RowItem title="Loyalty Program" color={Theme.colors.violet} buttonTitle="Create Loyalty Campaign" />
-        <Promotion />
+        <Promotion navigation={this.props.navigation} />
 
       </ScrollView>
     )
