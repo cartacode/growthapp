@@ -34,11 +34,8 @@ export const ButtonContianer = styled.View`
 margin-top:25px;
 `;
 export const LogoutButtonContianer = styled.View`
-display:flex;
-flex:0.2;
-justify-content:center;
-align-items:center;
-margin-top:40px;
+margin-top:30px;
+margin-bottom:20px;
 `;
 
 export const IconContainer = styled.TouchableOpacity`

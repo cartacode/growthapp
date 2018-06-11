@@ -6,7 +6,7 @@ export const MainContainer = styled.View`
 `;
 
 export const SubContainer = styled.View`
-margin-top:${props => props.receiveCoin? '0px' : '20px'};
+margin-top:${props => props.receiveCoin? '10px' : '20px'};
 `;
 
 export const ButtonContainer = styled.View`

@@ -13,7 +13,8 @@ import { MainSettingContainer,
   ButtonContianer,
   ContentContainer,
   LogoutButtonContianer,
-  IconContainer
+  IconContainer,
+
 } from './style';
 import CustomIcon from '../icon/svgicon';
 import TextInput from '../textfield/CustomTextField';
@@ -47,14 +48,14 @@ class SettingComponent extends React.Component {
     return(
       <ScrollView style={{marginTop:5}}>
         <MainSettingContainer>
-          <BusinessInformation/>
-          <ContactInformation  setModalVisible={this.setModalVisible}/>
-          <ButtonContianer>
+          <BusinessInformation title={"Business Information"}/>
+          <ContactInformation  title={"Contact Information"} setModalVisible={this.setModalVisible}/>
+          <LogoutButtonContianer>
             <CustomButton
               fill='#e63d30'
               width="260"
               text="Log Out"/>
-          </ButtonContianer>
+          </LogoutButtonContianer>
         </MainSettingContainer>
         <Modal
         animationType="slide"

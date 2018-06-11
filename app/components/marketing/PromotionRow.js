@@ -40,7 +40,13 @@ class PromotionRow extends React.Component {
   toggleSwitch = (value) => {
     this.setState({switchValue: value})
   }
-
+  text_truncate = (str, length, ending) => {
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  }
   render () {
     let data = this.props.data ? this.props.data : ''
     return(
@@ -48,11 +54,11 @@ class PromotionRow extends React.Component {
         <RowContainer>
           <ImageContainer>
             <Image
-            source={require('../../../assets/images/layer-1.png')} style={{width:120,height:70}}/>
+            source={require('../../../assets/images/layer-1.png')} style={{width:120,height:67}}/>
         </ImageContainer>
         <DetailContianer>
-          <TitleText>{data.title}</TitleText>
-          <ContentText>{data.description} </ContentText>
+          <TitleText>{this.text_truncate(data.title,18,'..')}</TitleText>
+          <ContentText>{this.text_truncate(data.description,80,'..')} </ContentText>
         </DetailContianer>
       </RowContainer>
       <BottomRowContainer>
@@ -61,10 +67,8 @@ class PromotionRow extends React.Component {
           onValueChange = {this.toggleSwitch}
           value={this.state.switchValue}
           onTintColor="#e3e5ef"
-          thumbTintColor={Theme.colors.skyBlue}
+          thumbTintColor={this.state.switchValue ? Theme.colors.skyBlue :"#e3e5ef"}
           tintColor="#e3e5ef"/>
-        </SwitchContainer>
-        <SwitchContainer>
         <ActiveText>Active</ActiveText>
         </SwitchContainer>
         <ButtonContainer>
