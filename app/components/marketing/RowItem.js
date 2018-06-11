@@ -36,7 +36,8 @@ class RowItem extends React.Component {
             <CustomButton
               fill={this.props.color}
               width="285"
-              text={this.props.buttonTitle}  />
+              text={this.props.buttonTitle}
+              onPress={this.props.onPress} />
             </ButtonContainer>
           </CardContainer>
       )

@@ -4,9 +4,9 @@ import { Dimensions, StyleSheet } from 'react-native'
 
 const deviceWidth = Dimensions.get('window').width
 
-//Container
-export const MainContainer = styled.View`
-
+export const MainWrapper = styled.View`
+  flex:1;
+  background-color:#fafafa;
 `;
 
 export const PromotionContainer = styled.View`
@@ -16,16 +16,17 @@ export const PromotionContainer = styled.View`
   padding-bottom:40px;
   background-color:#ffffff;
   elevation:3;
+  margin:20px;
 `;
 
 export const MarketPlaceContainer = styled.View`
-  margin-top:15px;
   padding-left:20px;
   padding-right:20px;
   padding-top:30px;
   padding-bottom:40px;
   background-color:#ffffff;
   elevation:3;
+  margin:20px;
 `;
 export const DropContainer =styled.View`
   margin-top:15px;
@@ -41,8 +42,8 @@ export const DayContainer = styled.View`
 `;
 
 export const DayBoxView = styled.TouchableOpacity`
-  width: ${deviceWidth / 4.5};
-  height: 50px;
+  width: 63px;
+  height: 45px;
   background-color: ${props => props.selectedDay == props.day ? Theme.colors.twitterBlue : Theme.colors.inputBackgroundColor};
   align-items: center;
   justify-content: center;
@@ -52,11 +53,12 @@ export const DayBoxView = styled.TouchableOpacity`
 `
 
 export const ButtonContainer = styled.View`
-  margin-top:30px;
-  justify-content:center;
-  padding-left:20px;
-  padding-right:20px;
-  align-items:center;
+margin-top:${props=> props.changes ? '200px' : '30px'};
+justify-content:center;
+padding-left:${props=> props.changes ? '0px' : '20px'};
+padding-right:${props=> props.changes ? '0px' : '20px'};
+align-items:center;
+margin-bottom:${props=> props.changes? '0px' : '30px'}
 `
 
 export const ImageButtonContainer = styled.View`
@@ -120,3 +122,35 @@ export const BitTextInput = styled.TextInput`
   color:${props=>Theme.colors.warmGrey};
   backgroundColor: ${props=>Theme.colors.inputBackgroundColor};
 `;
+
+export const DropdownContainer = styled.View`
+  background-color:#eeeeee;
+  height:60px;
+  justify-content:center;
+  padding:0px 10px;
+`;
+
+export const ModalIconContainer = styled.TouchableOpacity`
+background-color:#ffffff;
+width:45px;
+height:45px;
+padding:11px 0px;
+position:absolute;
+top:18px;
+right:4px;
+z-index:9999999;
+border-radius:70px;
+justify-content:center;
+align-items:center;
+margin-top:10px;
+elevation:5
+`;
+export const ChangesButtonContainer = styled.View`
+  margin-top:20px;
+`;
+
+export const SaveChangesText = styled.Text`
+  color:${props=> Theme.colors.darkGray};
+  font-family:${props=> Theme.fontFamily.regular};
+  font-size:${props=> Theme.fontSize.midregular};
+`
