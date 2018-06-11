@@ -6,6 +6,7 @@ import CustomIcon from '../../components/icon/svgicon';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import Marketing from '../../components/marketing/Marketing';
 import Account from '../../components/account/Account';
+import Wallet from '../../components/wallet/Wallet'
 let { height, width } = Dimensions.get("window");
 
   const initialLayout = {
@@ -15,7 +16,7 @@ let { height, width } = Dimensions.get("window");
 
   const FirstRoute = () => <View />;
 const SecondRoute = () => <Marketing/>;
-const ThirdRoute = () => <View />;
+const ThirdRoute = () => <Wallet />;
 const FourthRoute = () => <Account />;
 
 class MarketingScreen extends React.Component {
@@ -66,7 +67,7 @@ class MarketingScreen extends React.Component {
     _renderScene = SceneMap({
       0: () =>  <View />,
       1: () => <Marketing />,
-      2:() => <View />,
+      2:() => <Wallet />,
       3:() => <Account />
 });
 
