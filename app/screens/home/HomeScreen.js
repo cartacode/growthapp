@@ -22,7 +22,7 @@ import {MainContainer,
   import SignupScreen from '../signup/SignupScreen';
   import LoginScreen from '../login/LoginScreen';
   import BusinessInformation from '../business/BusinessInformation';
-
+  import CreateWallet from '../createwallet/CreateWalletScreen'
   class HomeScreen extends React.Component {
     static navigationOptions = {
       headerVisible:false,
@@ -95,9 +95,11 @@ import {MainContainer,
                   <SignupScreen  setModalVisible={this.setModalVisible}/>
                   :this.state.modalName=='Log In'?
                     <LoginScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
-                  :
+                  : this.state.modalName=='Business Information' ?
                 <BusinessInformation navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-                }
+                : <CreateWallet navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
+
+              }
               </Card>
             </ScrollView>
           </View>

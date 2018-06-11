@@ -11,6 +11,7 @@ import Theme from '../../../theme';
 import styled from "styled-components/native";
 import TextInput from '../textfield/CustomTextField';
 import CustomButton from '../button/CustomButton';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const MainWrapper = styled.View`
     background-color:#ffffff;
@@ -53,16 +54,28 @@ export const CityContainer = styled.View`
 `;
 
 class BusinessInformation extends React.Component {
+  uploadImage = () => {
+    ImagePicker.openPicker({
+      includeBase64: true,
+      compressImageQuality: 0.5
+    })
+    .then(image => {
+      let imageSrc = `data:${image.mime};base64,${image.data}`;
+      console.log(imageSrc);
+    });
+  }
   render () {
   return(
     <MainWrapper>
-      <CardTitle>Business Information</CardTitle>
+      <CardTitle>{this.props.title}</CardTitle>
       <ImageContainer>
         <ImageBackground source={require('../../../assets/images/layer-1204.png')} style={{width:300,height:120}}>
             <ButtonContianer>
                 <CustomButton border={Theme.colors.white}
                 width="130"
-                text="Change picture"/>
+                text="Change picture"
+                height="35"
+                onPress={this.uploadImage}/>
             </ButtonContianer>
         </ImageBackground>
       </ImageContainer>

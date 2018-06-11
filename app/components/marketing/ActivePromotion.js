@@ -7,16 +7,12 @@ import {
   FlatList
 } from 'react-native'
 import Theme from '../../../theme';
-import {
-  MainContainer,
-  ContentContainer,
-  CardContainer,
-  TitleContainer,
-  ButtonContainer,
-  TitleText,
-} from './style';
 import CustomButton from '../button/CustomButton';
 import PromotionRow from './PromotionRow'
+import styled from "styled-components/native";
+const MainContainer = styled.View`
+margin-top:10px;
+`;
 const data = [
   {
     id:1,
@@ -51,7 +47,7 @@ class ActivePromotion extends React.Component {
 
   render () {
     return(
-      <View>
+      <MainContainer>
         <FlatList
              initialNumToRender={8}
              removeClippedSubviews={true}
@@ -61,7 +57,7 @@ class ActivePromotion extends React.Component {
              renderItem={({ item }) => (
                <PromotionRow navigation={this.props.navigation} data={item} />
              )} />
-      </View>
+      </MainContainer>
     )
   }
 }

@@ -27,6 +27,6 @@ const Mainstack = StackNavigator({
 },
 	{
     navigationOptions,
-	initialRouteName: 'Home',
+	initialRouteName: 'Marketing',
 });
 export default Mainstack;

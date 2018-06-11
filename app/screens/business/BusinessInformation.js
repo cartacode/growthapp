@@ -60,7 +60,10 @@ import CustomButton from '../../components/button/CustomButton';
             <CustomButton
               fill={Theme.colors.lightBlue}
               width="260"
-              text="Submit"/>
+              text="Submit"
+              onPress={()=>{
+                this.props.setModalVisible(true,'Create Wallet');
+              }}/>
           </ButtonContianer>
           </ContentContainer>
         </View>

@@ -29,14 +29,12 @@ class SaveChanges extends React.Component {
             textColor={Theme.colors.warmGrey}
             fill={Theme.colors.inputBackgroundColor}
             width="260"
-            text="Discard Changes"
-            />
+            text="Discard Changes"/>
           <ChangesButtonContainer>
             <CustomButton
               fill={Theme.colors.lightBlue}
               width="260"
-              text="Save Changes"
-            />
+              text="Save Changes"  />
           </ChangesButtonContainer>
         </ButtonContainer>
       </View>

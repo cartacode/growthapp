@@ -49,7 +49,6 @@ export const DayBoxView = styled.TouchableOpacity`
   justify-content: center;
   margin-right: 10px;
   border-radius:3px;
-  elevation: 1;
 `
 
 export const ButtonContainer = styled.View`
@@ -58,7 +57,7 @@ justify-content:center;
 padding-left:${props=> props.changes ? '0px' : '20px'};
 padding-right:${props=> props.changes ? '0px' : '20px'};
 align-items:center;
-margin-bottom:${props=> props.changes? '0px' : '30px'}
+margin-bottom:${props=> props.changes? '0px' : '40px'}
 `
 
 export const ImageButtonContainer = styled.View`

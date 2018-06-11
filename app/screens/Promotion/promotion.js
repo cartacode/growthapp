@@ -170,7 +170,6 @@ class PromotionScreen extends React.Component {
       value: 'Next months',
     }];
     let DataProps = this.state.DataProps
-    console.warn(this.state.mode);
     return(
       <MainWrapper>
       <ScrollView>
@@ -187,8 +186,10 @@ class PromotionScreen extends React.Component {
               <ImageButtonContainer>
                 <CustomButton
                   border={"#ffffff"}
-                  width="150"
+                  width="145"
+                  height="38"
                   text="Change Picture"
+                  onPress={this.uploadImage}
                   />
               </ImageButtonContainer>
             </ImageBackground>
@@ -300,7 +301,7 @@ class PromotionScreen extends React.Component {
                 <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
                   {radio_props.map((obj, i) => {
                     return (
-                      <RadioButton key={i} style={{padding:8}} >
+                      <RadioButton key={i} style={{padding:this.state.selectedOptionOffer == 0 ? 8 : 2}} >
                         <RadioButtonInput
                           obj={obj}
                           index={i}
@@ -397,7 +398,7 @@ class PromotionScreen extends React.Component {
             <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
               {pause_props.map((obj, i) => {
                 return (
-                  <RadioButton key={i} style={{padding:5}}>
+                  <RadioButton key={i} style={{padding:4}}>
                     <RadioButtonInput
                       obj={obj}
                       index={i}
@@ -426,11 +427,11 @@ class PromotionScreen extends React.Component {
           </CommonContainer>
 
           <CommonContainer>
-          <HeadingText>Pause</HeadingText>
+          <HeadingText>Location</HeadingText>
           <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
             {location_props.map((obj, i) => {
               return (
-                <RadioButton key={i} style={{padding:5}}>
+                <RadioButton key={i} style={{padding:4}}>
                   <RadioButtonInput
                     obj={obj}
                     index={i}

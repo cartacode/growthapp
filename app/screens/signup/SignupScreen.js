@@ -49,7 +49,7 @@ import CustomButton from '../../components/button/CustomButton';
           </TextFieldContainer>
           <TextFieldContainer>
             <TextInput
-              label={'Confrim Password'}
+              label={'Confirm Password'}
               width={260} />
           </TextFieldContainer>
           <ButtonContianer>

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native'
-import {MainContainer,ConsumerText,CheckbocConatiner,TextInputContainer,TextInputsContainer,ButtonContianer,AddProductText,RewardContainer} from './style';
+import {MainContainer,ConsumerText,CheckboxConatiner,TextInputContainer,TextInputsContainer,ButtonContianer,AddProductText,RewardContainer} from './style';
 import CustomButton from '../../components/button/CustomButton';
 import CheckBox from 'react-native-checkbox';
 import TextInput from '../../components/textfield/CustomTextField';
@@ -25,7 +25,7 @@ class LoyaltyReward extends React.Component {
     return(
       <MainContainer>
         <ConsumerText>Consumer needs to</ConsumerText>
-        <CheckbocConatiner>
+        <CheckboxConatiner>
           <CheckBox
           label='Spend a minimum amout'
           checkedImage={require('./black-check-box-with-white-check.png')}
@@ -33,13 +33,13 @@ class LoyaltyReward extends React.Component {
           checkboxStyle={{width:16, height:16}}
           labelStyle={{color:'#424242',fontSize:14, fontFamily:'NunitoSans-SemiBold'}}
           />
-        </CheckbocConatiner>
+        </CheckboxConatiner>
         <TextInputContainer>
           <TextInput
           placeholder="$50"
           width="260" />
         </TextInputContainer>
-        <CheckbocConatiner>
+        <CheckboxConatiner>
           <CheckBox
           label='Buy specific product'
           checkedImage={require('./black-check-box-with-white-check.png')}
@@ -47,7 +47,7 @@ class LoyaltyReward extends React.Component {
           checkboxStyle={{width:16, height:16}}
           labelStyle={{color:'#424242',fontSize:14, fontFamily:'NunitoSans-SemiBold'}}
           />
-        </CheckbocConatiner>
+        </CheckboxConatiner>
         <TextInputsContainer>
           <TextInputContainer>
             <TextInput
@@ -65,7 +65,7 @@ class LoyaltyReward extends React.Component {
         </AddProductText>
         <RewardContainer>
           <ConsumerText>Reward with</ConsumerText>
-          <CheckbocConatiner>
+          <CheckboxConatiner>
             <CheckBox
             label='Balehu Coins'
             checkedImage={require('./gray-checked.png')}
@@ -73,8 +73,8 @@ class LoyaltyReward extends React.Component {
             checkboxStyle={{width:16, height:16}}
             labelStyle={{color:'#424242',fontSize:14, fontFamily:'NunitoSans-SemiBold'}}
             />
-          </CheckbocConatiner>
-          <CheckbocConatiner>
+          </CheckboxConatiner>
+          <CheckboxConatiner>
             <CheckBox
             label='Free product(s)'
             checkedImage={require('./gray-checked.png')}
@@ -82,7 +82,7 @@ class LoyaltyReward extends React.Component {
             checkboxStyle={{width:16, height:16}}
             labelStyle={{color:'#424242',fontSize:14, fontFamily:'NunitoSans-SemiBold'}}
             />
-          </CheckbocConatiner>
+          </CheckboxConatiner>
         </RewardContainer>
         <ButtonContianer>
           <CustomButton

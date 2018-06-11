@@ -65,7 +65,7 @@ class ContactInformation extends React.Component {
   render () {
     return(
       <MainWrapper>
-        <CardTitle>Business Information</CardTitle>
+        <CardTitle>{this.props.title}</CardTitle>
         <FormContainer>
           <CityContainer>
             <TextFieldContainer>
