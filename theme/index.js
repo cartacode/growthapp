@@ -13,6 +13,7 @@ export default  Theme = {
     skyBlue:'#1e88e5',
     blue:'#42a5f5',
     warmGrey:'#9e9e9e',
+    greyishBrown:'#424242',
   },
   fontFamily:{
     bold: 'NunitoSans-Bold',

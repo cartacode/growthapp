@@ -4,7 +4,7 @@ import {StatusBar, View} from 'react-native';
 import styled, {ThemeProvider} from "styled-components/native";
 import Theme from '../theme';
 
-export default function balehuApp()
+export default function balehuMerchant()
 {
   return (
     <View style={{flex:1}}>

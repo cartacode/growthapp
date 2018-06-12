@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-} from 'react-native';
-import balehuApp from './app/balehuApp.js';
-AppRegistry.registerComponent('balehuApp', () => balehuApp);
+import { AppRegistry } from 'react-native';
+import App from './App';
+import balehuMerchant from './app/balehuMerchant.js';
+
+AppRegistry.registerComponent('balehuMerchant', () => balehuMerchant);

@@ -46,7 +46,9 @@ class Marketing extends React.Component {
     return(
       <ScrollView contentContainerStyle={{paddingBottom:20,alignItems:'center',justifyContent:'center'}}>
         <RowItem title="New Promotion" onPress={() => {this.props.navigation.navigate('Promotion')}} color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
-        <RowItem title="Analytics" color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
+        <RowItem title="Analytics"
+          onPress={() => {this.props.navigation.navigate('Analytics')}}
+          color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
         <RowItem onPress={() => {
           this.setModalVisible(true,'Loyalty Reward');
         }} title="Loyalty Program" color={Theme.colors.violet} buttonTitle="Create Loyalty Campaign" />

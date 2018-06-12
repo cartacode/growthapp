@@ -5,6 +5,8 @@ import MainScreen from '../screens/main/MainScreen'
 import MarketingScreen from '../screens/marketing/MarketingScreen'
 import AddPromotion from '../screens/Promotion/promotion.js';
 import LoyaltyReward from '../screens/loyalty/LoyaltyReward';
+import AnalyticsScreen from '../screens/analytics/AnalyticsScreen'
+
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -24,6 +26,7 @@ const Mainstack = StackNavigator({
   Marketing:{ screen: MarketingScreen },
   Promotion: { screen:AddPromotion },
   Loyalty: {screen: LoyaltyReward},
+  Analytics:{screen: AnalyticsScreen}
 },
 	{
     navigationOptions,
