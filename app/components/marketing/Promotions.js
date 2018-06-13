@@ -78,7 +78,7 @@ class Promotion extends React.Component {
 
         <PromotionCard>
           <PromotionTitle>
-              <TitleText>My Promotions</TitleText>
+              <TitleText>My Marketing Campaigns</TitleText>
           </PromotionTitle>
             <TabViewAnimated
               navigationState={this.state}

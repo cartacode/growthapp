@@ -43,14 +43,6 @@ let location_props = [
   { label: "My current location", value: 1 }
 ];
 
-let data=[
-  {day:"Sun"},{day:"Mon"},{ day:"Tus"},{ day:"Wed"}
-]
-
-let data2 = [
-  { day:"Thu"},{ day:"Fri"},{ day:"Sat"},
-]
-
 class PromotionScreen extends React.Component {
   static navigationOptions = (navigation) => ({
     headerTitle:(<View/>),
@@ -61,18 +53,24 @@ class PromotionScreen extends React.Component {
   constructor() {
     super();
     this.state = {
+      date:[
+        {day:"Sun",selected:false,id:1},{day:"Mon",selected:false,id:2}, {day:"Tus",selected:false,id:3},{day:"Wed",selected:false,id:4}
+      ],
+      date2 : [
+        { day:"Thu",selected:false,id:5},{ day:"Fri",selected:false,id:6},{ day:"Sat",selected:false,id:7},
+      ],
       value: null,
       selectedOptionOffer: null,
       selectedOptionPause:null,
       selectedOptionLocation:null,
-      selectedDay:'',
       text:'',
       DataProps:'',
       mode:true,
       htmlText:'',
       updatedHTMLText:'',
       modalVisible: false,
-      modalName:''
+      modalName:'',
+      selectedTime:'All Day',
     };
   }
 
@@ -83,7 +81,11 @@ class PromotionScreen extends React.Component {
       })
     }
   }
-
+  selectedDays = (value,index) => {
+    this.setState({
+      selectedTime: value
+    });
+  }
   handleRadioClick = e => {
     this.setState({
       selectedOptionOffer: e
@@ -126,9 +128,29 @@ class PromotionScreen extends React.Component {
   }
 
   handleDay = e => {
-    this.setState({
-      selectedDay:this.state.selectedDay == e ?'': e
-    })
+    if(e.id<=4){
+      let date = this.state.date;
+      for (var i = 0; i <= date.length; i++) {
+        if(date[i].id == e.id){
+          date[i].selected = !e.selected;
+          break;
+        }
+      }
+      this.setState({
+        date
+      });
+    }else{
+      let date = this.state.date2;
+      for (var i = 0; i <= date.length; i++) {
+        if(date[i].id == e.id){
+          date[i].selected = !e.selected;
+          break;
+        }
+      }
+       this.setState({
+        date2:date
+      });
+    }
   }
 
   getHtml = () => {
@@ -155,6 +177,7 @@ class PromotionScreen extends React.Component {
   }
 
   render () {
+    alert(days)
     let catagory = [{
       value: 'Food',
     }, {
@@ -163,11 +186,13 @@ class PromotionScreen extends React.Component {
       value: 'Diet',
     }];
     let days = [{
-      value: 'All Day',
+      value: 'All Day',id:0,
     }, {
-      value: 'Next week',
+      value: 'mornings until 2pm',id:1,
     }, {
-      value: 'Next months',
+      value: 'afternoon/evening12-30pm',id:2,
+    },{
+      value:'after 7pm or pick hours',id:4,
     }];
     let DataProps = this.state.DataProps
     return(
@@ -305,6 +330,7 @@ class PromotionScreen extends React.Component {
                         <RadioButtonInput
                           obj={obj}
                           index={i}
+                          initial={1}
                           isSelected={this.state.selectedOptionOffer === i}
                           onPress={this.handleRadioClick}
                           borderWidth={1}
@@ -334,7 +360,7 @@ class PromotionScreen extends React.Component {
                   <BitTextInput
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
-                    placeholder="Enter bit coin"
+                    placeholder="coin amount"
                     placeholderTextColor={Theme.colors.warmGrey}
                     underlineColorAndroid="transparent"
                 />: null}
@@ -361,10 +387,10 @@ class PromotionScreen extends React.Component {
             <HeadingText>Discoverable</HeadingText>
             <DayContainer>
             {
-              data.map((e)=>{
+              this.state.date.map((e)=>{
               return(
-                <DayBoxView selectedDay={this.state.selectedDay} day={e.day} onPress={() => this.handleDay(e.day)}>
-                  <DayText selectedDay={this.state.selectedDay} day={e.day}>{e.day}</DayText>
+                <DayBoxView selected={e.selected}  onPress={() => this.handleDay(e)}>
+                  <DayText selected={e.selected}>{e.day}</DayText>
                 </DayBoxView>
                 )
               })
@@ -373,10 +399,10 @@ class PromotionScreen extends React.Component {
 
             <DayContainer row>
             {
-              data2.map((e)=>{
+              this.state.date2.map((e)=>{
               return(
-                <DayBoxView selectedDay={this.state.selectedDay} day={e.day} onPress={() => this.handleDay(e.day)}>
-                  <DayText selectedDay={this.state.selectedDay} day={e.day}>{e.day}</DayText>
+                <DayBoxView selected={e.selected} day={e.day} onPress={() => this.handleDay(e)}>
+                  <DayText selected={e.selected} day={e.day}>{e.day}</DayText>
                 </DayBoxView>
                 )
               })
@@ -387,6 +413,8 @@ class PromotionScreen extends React.Component {
             <Dropdown
               data={days}
               placeholder={"All Day"}
+              value={this.state.selectedTime}
+              onChangeText={(value,index) => this.selectedDays(value,index)}
               inputContainerStyle={{ borderBottomColor: 'transparent',marginTop:-15}}
             />
             </DropdownContainer>

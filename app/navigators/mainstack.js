@@ -30,6 +30,6 @@ const Mainstack = StackNavigator({
 },
 	{
     navigationOptions,
-	initialRouteName: 'Home',
+	initialRouteName: 'Promotion',
 });
 export default Mainstack;

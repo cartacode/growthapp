@@ -44,7 +44,7 @@ export const DayContainer = styled.View`
 export const DayBoxView = styled.TouchableOpacity`
   width: 63px;
   height: 45px;
-  background-color: ${props => props.selectedDay == props.day ? Theme.colors.twitterBlue : Theme.colors.inputBackgroundColor};
+  background-color: ${props => props.selected? Theme.colors.twitterBlue : Theme.colors.inputBackgroundColor};
   align-items: center;
   justify-content: center;
   margin-right: 10px;
@@ -108,7 +108,7 @@ export const HeadingText = styled.Text`
 `;
 
 export const DayText = styled.Text`
-  color:${props => props.selectedDay == props.day ? '#ffffff' : '#9e9e9e'};
+  color:${props => props.selected ? '#ffffff' : '#9e9e9e'};
   font-family:${props=> Theme.fontFamily.regular};
   font-size:${props=> Theme.fontSize.midregular};
 `

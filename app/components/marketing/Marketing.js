@@ -34,9 +34,9 @@ class Marketing extends React.Component {
   constructor(){
     super();
     this.state = {
-     modalVisible: false,
-     modalName:''
-   }
+      modalVisible: false,
+      modalName:''
+    }
   }
 
   setModalVisible = (visible,modal) => {
@@ -45,23 +45,32 @@ class Marketing extends React.Component {
   render () {
     return(
       <ScrollView contentContainerStyle={{paddingBottom:20,alignItems:'center',justifyContent:'center'}}>
-        <RowItem title="New Promotion" onPress={() => {this.props.navigation.navigate('Promotion')}} color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
+        <RowItem
+          title="New Promotion"
+          onPress={() => {this.props.navigation.navigate('Promotion')}}
+          color={Theme.colors.lightBlue}
+          buttonTitle="Add New Promotion" />
+        <RowItem onPress={() => {
+            this.setModalVisible(true,'Loyalty Reward');
+          }}
+          title="Loyalty Program"
+          color={Theme.colors.violet}
+          buttonTitle="Create Loyalty Campaign" />
         <RowItem title="Analytics"
           onPress={() => {this.props.navigation.navigate('Analytics')}}
-          color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
-        <RowItem onPress={() => {
-          this.setModalVisible(true,'Loyalty Reward');
-        }} title="Loyalty Program" color={Theme.colors.violet} buttonTitle="Create Loyalty Campaign" />
-        <Promotion navigation={this.props.navigation} />
-          <Modal
+          color={Theme.colors.skyBlue}
+          buttonTitle="View All Analytics" />
+        <Promotion
+          navigation={this.props.navigation} />
+        <Modal
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
           >
           <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
             <IconContainer onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
+                this.setModalVisible(!this.state.modalVisible);
+              }}>
               <CustomIcon
                 name="cross"
                 fill='#000000'
