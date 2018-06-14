@@ -21,7 +21,7 @@ import {
   BottomRowContainer,
   ActiveText,
 } from './PromotionRowStyle.js';
-import CustomButton from '../button/CustomButton';
+import CustomButton from '../../components/button/CustomButton';
 
 class PromotionRow extends React.Component {
   static navigationOptions = {

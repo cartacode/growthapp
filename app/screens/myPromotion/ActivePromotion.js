@@ -7,7 +7,7 @@ import {
   FlatList
 } from 'react-native'
 import Theme from '../../../theme';
-import CustomButton from '../button/CustomButton';
+import CustomButton from '../../components/button/CustomButton';
 import PromotionRow from './PromotionRow'
 import styled from "styled-components/native";
 const MainContainer = styled.View`

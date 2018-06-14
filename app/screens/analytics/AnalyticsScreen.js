@@ -10,8 +10,6 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import HeaderRightIcon from '../../components/header/HeaderRightIcon';
-import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
 import {
   MainContainer,
   CardContainer,
@@ -22,14 +20,12 @@ import {
   ChartInnerContainer,
   RoundContentContainer,
   DetailCardContainer,
+  ButtonContainer,
 DateText} from './style.js';
+import CustomButton from '../../components/button/CustomButton';
   import RowComponent from './RowComponent.js'
   class AnalyticsScreen extends React.PureComponent {
-    static navigationOptions = (navigation) => ({
-      headerTitle:(<View/>),
-      headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
-      headerRight: (<View/>),
-    })
+
 
     render() {
       const data = [ 50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80 ]
@@ -53,10 +49,8 @@ DateText} from './style.js';
           />
       )
       return (
-        <MainContainer>
-          <CardContainer>
+          <View>
             <TitleContainer>
-              <HeaderText>Business Performance:</HeaderText>
               <TitleText>The French Cuisine</TitleText>
             </TitleContainer>
             <RoundContentContainer>
@@ -119,8 +113,13 @@ DateText} from './style.js';
               <RowComponent color={Theme.colors.redBalehu} text="Engagement" value='38' />
               <RowComponent color={'#009688'} text="Redeems" value='12' />
             </DetailCardContainer>
-          </CardContainer>
-        </MainContainer>
+            <ButtonContainer>
+            <CustomButton
+              fill={Theme.colors.skyBlue}
+              width={300}
+              text={"View All Analytics"}  />
+            </ButtonContainer>
+          </View>
       )
     }
   }

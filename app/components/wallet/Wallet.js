@@ -11,16 +11,17 @@ import { MainContainer,
   CoinInfoText,
   CoinText,
   PriceText,
-SendButtonContainer,
-TransactionButton,
-ButtonContainer,IconContainer } from "./style";
-import CustomIcon from '../icon/svgicon'
-import Card from '../../components/giftCardPopup/giftCard';
-import SendCoin from '../../screens/coin/sendCoin';
-import CoinScreen from '../../screens/coin/CoinScreen';
-import TransactionHistory from '../../screens/history/TranscationHistory.js';
+  SendButtonContainer,
+  TransactionButton,
+  ButtonContainer,IconContainer } from "./style";
+  import CustomIcon from '../icon/svgicon'
+  import Card from '../../components/giftCardPopup/giftCard';
+  import SendCoin from '../../screens/coin/sendCoin';
+  import CoinScreen from '../../screens/coin/CoinScreen';
+  import TransactionHistory from '../../screens/history/TranscationHistory.js';
+  import QrCodeScan from '../qrCodeScan/qrCode';
 
-import Theme from "../../../theme";
+  import Theme from "../../../theme";
 
   class Wallet extends React.Component {
     constructor(){
@@ -46,24 +47,24 @@ import Theme from "../../../theme";
               <PriceText>$24.08 USD </PriceText>
             </SubContainer>
             <SendButtonContainer>
-            <CustomButtom
-              onPress={() => {
-                this.setModalVisible(true,'Send Coins');
-              }}
-              fill={Theme.colors.green}
-              width={290}
-              text={"Send Coins"}
-              />
+              <CustomButtom
+                onPress={() => {
+                  this.setModalVisible(true,'Send Coins');
+                }}
+                fill={Theme.colors.green}
+                width={290}
+                text={"Send Coins"}
+                />
             </SendButtonContainer>
             <ButtonContainer>
-            <CustomButtom
-              onPress={() => {
-                this.setModalVisible(true,'Receive Coins');
-              }}
-              fill={Theme.colors.violet}
-              width={290}
-              text={"Receive Coins"}
-              />
+              <CustomButtom
+                onPress={() => {
+                  this.setModalVisible(true,'Receive Coins');
+                }}
+                fill={Theme.colors.violet}
+                width={290}
+                text={"Receive Coins"}
+                />
             </ButtonContainer>
             <ButtonContainer>
               <CustomButtom
@@ -90,39 +91,41 @@ import Theme from "../../../theme";
             </TransactionButton>
           </CardContainer>
           <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          >
-          <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-            <IconContainer onPress={() => {
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            >
+            <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
+              <IconContainer onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-              <CustomIcon
-                name="cross"
-                fill='#000000'
-                height="15"
-                width="15"
-                />
-            </IconContainer>
-            <ScrollView>
-              <Card title={this.state.modalName}>
-                {
-                  this.state.modalName=='Send Coins'?
-                  <SendCoin  setModalVisible={this.setModalVisible}/>
-                  : this.state.modalName=='Receive Coins'?
-                  <CoinScreen screen={'request'}  setModalVisible={this.setModalVisible}/>
-                  : this.state.modalName=='Transaction History'?
-                  <TransactionHistory  setModalVisible={this.setModalVisible}/>
-                  : <CoinScreen setModalVisible={this.setModalVisible}/>
+                <CustomIcon
+                  name="cross"
+                  fill='#000000'
+                  height="15"
+                  width="15"
+                  />
+              </IconContainer>
+              <ScrollView>
+                <Card title={this.state.modalName}>
+                  {
+                    this.state.modalName=='Send Coins'?
+                    <SendCoin  setModalVisible={this.setModalVisible}/>
+                    : this.state.modalName=='Receive Coins'?
+                    <CoinScreen screen={'request'}  setModalVisible={this.setModalVisible}/>
+                    : this.state.modalName=='Transaction History'?
+                    <TransactionHistory  setModalVisible={this.setModalVisible}/>
+                    : this.state.modalName=='Scan QR code'?
+                    <QrCodeScan setModalVisible={this.setModalVisible} />
+                    : <CoinScreen setModalVisible={this.setModalVisible}/>
 
                 }
               </Card>
             </ScrollView>
           </View>
         </Modal>
-        </MainContainer>
-      );
-    }
+      </MainContainer>
+    );
   }
-  export default Wallet;
+}
+export default Wallet;

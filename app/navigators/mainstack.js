@@ -6,6 +6,8 @@ import MarketingScreen from '../screens/marketing/MarketingScreen'
 import AddPromotion from '../screens/Promotion/promotion.js';
 import LoyaltyReward from '../screens/loyalty/LoyaltyReward';
 import AnalyticsScreen from '../screens/analytics/AnalyticsScreen'
+import MyPromotionScreen from '../screens/myPromotion/MyPromotionScreen.js'
+import MyReward from '../screens/myReward/MyReward.js'
 
 import {
   StackNavigator,
@@ -26,10 +28,12 @@ const Mainstack = StackNavigator({
   Marketing:{ screen: MarketingScreen },
   Promotion: { screen:AddPromotion },
   Loyalty: {screen: LoyaltyReward},
-  Analytics:{screen: AnalyticsScreen}
+  Analytics:{screen: AnalyticsScreen},
+  MyPromotion:{screen:MyPromotionScreen},
+  MyReward:{screen:MyReward}
 },
 	{
     navigationOptions,
-	initialRouteName: 'Promotion',
+	initialRouteName: 'Home',
 });
 export default Mainstack;
