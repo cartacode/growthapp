@@ -15,11 +15,11 @@ import {
   TitleContainer,
   ButtonContainer,
   TitleText,
-  IconContainer
+  IconContainer,
+  InnerButtonContainer
 } from './style';
 import CustomButton from '../button/CustomButton';
-import RowItem from './RowItem'
-import Promotion from './Promotions'
+import AnalyticsScreen from '../../screens/analytics/AnalyticsScreen'
 import Card from '../giftCardPopup/giftCard'
 import LoyaltyReward from '../../screens/loyalty/LoyaltyReward';
 import CustomIcon from '../icon/svgicon';
@@ -34,9 +34,9 @@ class Marketing extends React.Component {
   constructor(){
     super();
     this.state = {
-     modalVisible: false,
-     modalName:''
-   }
+      modalVisible: false,
+      modalName:''
+    }
   }
 
   setModalVisible = (visible,modal) => {
@@ -45,45 +45,89 @@ class Marketing extends React.Component {
   render () {
     return(
       <ScrollView contentContainerStyle={{paddingBottom:20,alignItems:'center',justifyContent:'center'}}>
-        <RowItem title="New Promotion" onPress={() => {this.props.navigation.navigate('Promotion')}} color={Theme.colors.lightBlue} buttonTitle="Add New Promotion" />
-        <RowItem title="Analytics"
-          onPress={() => {this.props.navigation.navigate('Analytics')}}
-          color={Theme.colors.skyBlue} buttonTitle="View All Analytics" />
-        <RowItem onPress={() => {
-          this.setModalVisible(true,'Loyalty Reward');
-        }} title="Loyalty Program" color={Theme.colors.violet} buttonTitle="Create Loyalty Campaign" />
-        <Promotion navigation={this.props.navigation} />
-          <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          >
-          <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-            <IconContainer onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-              <CustomIcon
-                name="cross"
-                fill='#000000'
-                height="15"
-                width="15"
-                />
-            </IconContainer>
-            <ScrollView>
-              <Card title={this.state.modalName}>
-                {
-                  this.state.modalName=='Loyalty Reward'?
-                  <LoyaltyReward  setModalVisible={this.setModalVisible}/>
-                  :
-                  null
-                }
-              </Card>
-            </ScrollView>
-          </View>
-        </Modal>
-      </ScrollView>
-    )
-  }
-}
+        <CardContainer>
+          <TitleContainer>
+            <TitleText>Promotions</TitleText>
+          </TitleContainer>
+          <ButtonContainer>
+            <InnerButtonContainer>
+            <CustomButton
+              fill={Theme.colors.lightBlue}
+              width="146"
+              text={"New Promotion"}
+              onPress={() => {this.props.navigation.navigate('Promotion')}} />
+            </InnerButtonContainer>
+            <InnerButtonContainer>
+          <CustomButton
+              border={Theme.colors.lightBlue}
+              width="140"
+              text={"My Promotions"}
+              onPress={() => {this.props.navigation.navigate('MyPromotion')}} />
+            </InnerButtonContainer>
+          </ButtonContainer>
+        </CardContainer>
 
-export default Marketing;
+        <CardContainer>
+          <TitleContainer>
+            <TitleText>Loyalty Rewards</TitleText>
+          </TitleContainer>
+          <ButtonContainer>
+            <InnerButtonContainer>
+            <CustomButton
+              fill={Theme.colors.violet}
+              width="143"
+              text={"New Reward"}
+              onPress={() => {
+                this.setModalVisible(true,'Loyalty Reward');
+              }}/>
+            </InnerButtonContainer>
+            <InnerButtonContainer>
+              <CustomButton
+                border={Theme.colors.violet}
+                width="142"
+                text={"My Rewards"}
+                onPress={() => {this.props.navigation.navigate('MyReward')}} />
+              </InnerButtonContainer>
+              </ButtonContainer>
+            </CardContainer>
+            <CardContainer>
+              <TitleContainer>
+                <TitleText>Analytics</TitleText>
+              </TitleContainer>
+            <AnalyticsScreen
+              navigation={this.props.navigation} />
+            </CardContainer>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={this.state.modalVisible}
+              >
+              <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
+                <IconContainer onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}>
+                  <CustomIcon
+                    name="cross"
+                    fill='#000000'
+                    height="15"
+                    width="15"
+                    />
+                </IconContainer>
+                <ScrollView>
+                  <Card title={this.state.modalName}>
+                    {
+                      this.state.modalName=='Loyalty Reward'?
+                      <LoyaltyReward  setModalVisible={this.setModalVisible}/>
+                      :
+                      null
+                    }
+                  </Card>
+                </ScrollView>
+              </View>
+            </Modal>
+          </ScrollView>
+        )
+      }
+    }
+
+    export default Marketing;

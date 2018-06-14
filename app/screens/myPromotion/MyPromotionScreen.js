@@ -11,16 +11,17 @@ import Theme from '../../../theme';
 import {
   MainContainer,
   PromotionCard,
-  TitleContainer,
-  ButtonContainer,
   TitleText,
   PromotionTitle,
   TabContainer
 } from './style';
-import CustomButton from '../button/CustomButton';
+import CustomButton from '../../components/button/CustomButton';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 let { height, width } = Dimensions.get("window");
 import ActivePromotion from './ActivePromotion'
+import HeaderRightIcon from '../../components/header/HeaderRightIcon';
+import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
+
 const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
@@ -30,14 +31,12 @@ const FirstRoute = () => <View/>;
 const SecondRoute = () => <ActivePromotion/>;
 const ThirdRoute = () => <View />;
 
-class Promotion extends React.Component {
-  static navigationOptions = {
-    headerVisible:false,
-    headerStyle:{
-      width:0,
-      height:0,
-    },
-  }
+class MyPromotion extends React.Component {
+  static navigationOptions = (navigation) => ({
+    headerTitle:(<View/>),
+    headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
+    headerRight: (<View/>),
+  })
   constructor(props){
     super(props)
     this.state = {
@@ -75,10 +74,11 @@ class Promotion extends React.Component {
   });
   render () {
     return(
-
+      <ScrollView>
+      <MainContainer>
         <PromotionCard>
           <PromotionTitle>
-              <TitleText>My Promotions</TitleText>
+              <TitleText>My Marketing Campaigns</TitleText>
           </PromotionTitle>
             <TabViewAnimated
               navigationState={this.state}
@@ -88,8 +88,10 @@ class Promotion extends React.Component {
               initialLayout={initialLayout}
               />
           </PromotionCard>
+        </MainContainer>
+      </ScrollView>
       )
     }
   }
 
-  export default Promotion;
+  export default MyPromotion;

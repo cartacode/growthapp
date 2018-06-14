@@ -16,11 +16,10 @@ padding-bottom:20px;
 height:690px;
 `;
 export const CardContainer = styled.View`
-padding:20px 15px 20px 15px;
+padding:15px 15px 15px 15px;
 elevation:2px;
 background-color:#ffffff;
 margin-top:20px;
-height:145px;
 
 `;
 export const PromotionTitle = styled.View`
@@ -32,9 +31,14 @@ export const TitleContainer = styled.View`
   align-items:flex-start;
 `;
 export const ButtonContainer = styled.View`
+display:flex;
+flex-direction:row;
+justify-content:space-between;
 align-items:center;
-justify-content:center;
-margin-top:20px;
+margin-top:15px;
+`;
+export const InnerButtonContainer = styled.View`
+padding:0px 5px;
 `;
 export const TitleText = styled.Text`
 color:${props => Theme.colors.darkGray};

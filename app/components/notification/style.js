@@ -73,3 +73,18 @@ font-family:${props=> Theme.fontFamily.regular};
 font-size:${props=> Theme.fontSize.small};
 margin-top:6px;
 `;
+export const IconContainer = styled.TouchableOpacity`
+background-color:#ffffff;
+width:45px;
+height:45px;
+padding:11px 0px;
+position:absolute;
+top:18px;
+right:4px;
+z-index:9999999;
+border-radius:70px;
+justify-content:center;
+align-items:center;
+margin-top:10px;
+elevation:5
+`

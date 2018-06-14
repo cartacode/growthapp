@@ -33,8 +33,7 @@ class SendCoin extends React.Component {
               text={"Scan Code"}
               onPress={() => {
                 this.props.setModalVisible(true,'Scan QR code');
-              }}
-            />
+              }}/>
           <SubContainer>
             <LabelContainer>
               <LabelText>$.01 usd per coin </LabelText>
@@ -42,15 +41,13 @@ class SendCoin extends React.Component {
             <TextInput
               label={"Amount"}
               width={260}
-              placeholder="0.00 USD"
-            />
+              placeholder="0.00 USD"/>
           </SubContainer>
           <SubContainer>
             <TextInput
               label={"Memo"}
               width={260}
-              placeholder="Add note"
-            />
+              placeholder="Add note"  />
           </SubContainer>
           <ButtonContainer>
             <CustomButton
@@ -59,8 +56,7 @@ class SendCoin extends React.Component {
               }}
               fill={Theme.colors.green}
               width={260}
-              text={"Send"}
-            />
+              text={"Send"}/>
           </ButtonContainer>
         </MainContainer>
       );

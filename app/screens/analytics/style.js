@@ -60,3 +60,10 @@ export const DetailCardContainer = styled.View`
   top:50%;
   left:40%;
 `;
+export const ButtonContainer = styled.View`
+justify-content:space-between;
+align-items:center;
+margin-top:15px;
+margin-bottom:15px;
+
+`;

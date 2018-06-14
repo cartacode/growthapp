@@ -23,7 +23,13 @@ export const TextInputsContainer = styled.View`
   align-items:center;
   justify-content:space-between;
 `;
-
+export const StyledTextInput = styled.TextInput`
+    background-color:${props => Theme.colors.inputBackgroundColor};
+    width:${props => props.width}px;
+    height:50px;
+    padding-left:15px;
+    margin-top:${props => props.product ? '-8px' :' 20px'};
+`;
 export const AddProductText = styled.Text`
 color:#5c9eff;
 font-family:${props=> Theme.fontFamily.bold};

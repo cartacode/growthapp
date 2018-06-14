@@ -33,6 +33,7 @@ class CustomTextField extends React.Component {
             secureTextEntry={this.props.secureTextEntry ? this.props.secureTextEntry : false}
             value={this.props.value}
             onChangeText={this.props.onChangeText}
+            editable={this.props.editable ?  this.props.editable : true}
         />
       </View>
     )
