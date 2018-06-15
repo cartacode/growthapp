@@ -9,7 +9,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native'
-import { MainContainer, DropdownContainer,PromotionContainer,BitTextInput,MainWrapper, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText,ModalIconContainer } from './style';
+import { MainContainer, BackText,BackHeader,DropdownContainer,PromotionContainer,BitTextInput,MainWrapper, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText,ModalIconContainer } from './style';
 import CustomButton from '../../components/button/CustomButton';
 import TextInputBox from '../../components/textfield/CustomTextField';
 import RadioForm, {
@@ -46,9 +46,11 @@ let location_props = [
 
 class PromotionScreen extends React.Component {
   static navigationOptions = (navigation) => ({
-    headerTitle:(<View/>),
-    headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
-    headerRight: (<View/>),
+    headerVisible:false,
+    headerStyle:{
+      width:0,
+      height:0,
+    },
   })
 
   constructor() {
@@ -61,30 +63,42 @@ class PromotionScreen extends React.Component {
         { day:"Thu",selected:false,id:5},{ day:"Fri",selected:false,id:6},{ day:"Sat",selected:false,id:7},
       ],
       value: null,
-      selectedOptionOffer: null,
+      selectedOptionOffer:null,
       selectedOptionPause:null,
       selectedOptionLocation:null,
-      text:'',
+      text:null,
       DataProps:'',
       mode:true,
-      htmlText:'',
-      updatedHTMLText:'',
+      htmlText:null,
+      updatedHTMLText:null,
       modalVisible: false,
       modalName:'',
-      selectedTime:'All Day',
+      selectedTime:'',
       openTimePicker:false,
       openCalendar:false,
       selectedDate:null,
       latitude:'',
       longitude:'',
+      saveValue:false,
     };
   }
-
   componentWillMount() {
+
     if(this.props.navigation.state.params){
       this.setState({
         DataProps:this.props.navigation.state.params.index
       })
+    }
+  }
+  handleBack = () =>{
+    const {selectedTime,selectedOptionOffer,selectedOptionPause,selectedOptionLocation,htmlText ,text} = this.state;
+    if(selectedTime != '' || selectedOptionOffer != null || selectedOptionPause  != null || selectedOptionLocation  != null || htmlText  != null || text != null )
+    {
+      this.setModalVisible(true,'Save Changes')
+
+    }
+    else{
+      this.props.navigation.goBack()
     }
   }
   showTimePicker = () => this.setState({ openTimePicker: true });
@@ -200,8 +214,21 @@ class PromotionScreen extends React.Component {
       });
     }
   }
+  onEditorInitialized() {
+    this.setFocusHandlers();
+    //this.getHTML();
+  }
 
-  getHtml = () => {
+
+  setFocusHandlers() {
+    this.richtext.setTitleFocusHandler(() => {
+      //alert('title focus');
+    });
+    this.richtext.setContentFocusHandler(() => {
+      //alert('content focus');
+    });
+  }
+   getHtml = () => {
     if (this.state.mode === true){
       this.richtext.getContentHtml().then((html)=>{
         this.setState({
@@ -252,6 +279,12 @@ class PromotionScreen extends React.Component {
     let DataProps = this.state.DataProps
     return(
       <MainWrapper>
+        <BackHeader >
+          <TouchableOpacity onPress={this.handleBack}>
+            <CustomIcon name={"left-arrow"} />
+          </TouchableOpacity>
+          <BackText >Back</BackText>
+        </BackHeader>
         <ScrollView>
           <PromotionContainer>
             <TitleText>{DataProps ? 'Edit Promotion' : 'Create New Promotion'}</TitleText>
@@ -421,6 +454,16 @@ class PromotionScreen extends React.Component {
                           />: null}
                         </InputContainer>
                       </Container>
+                        {
+                          this.state.selectedOptionOffer == 1 ?
+                            <BitTextInput
+                              onChangeText={(text) => this.setState({text})}
+                              value={this.state.text}
+                              placeholder="Enter Promotion"
+                              placeholderTextColor={Theme.colors.warmGrey}
+                              underlineColorAndroid="transparent"
+                              />
+                          : null}
                     </CommonContainer>
                   </PromotionContainer>
 
@@ -567,7 +610,6 @@ class PromotionScreen extends React.Component {
                         <CustomButton
                           onPress={() => {
                             this.props.navigation.goBack(null);
-                            //this.setModalVisible(true,'Save Changes');
                           }}
                           fill={Theme.colors.lightBlue}
                           width="310"

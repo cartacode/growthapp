@@ -70,6 +70,14 @@ export const Container = styled.View`
   flex:1px;
   flex-direction:row;
 `;
+export const BackHeader = styled.View`
+  height: 60px;
+  backgroundColor:#ffffff;
+  elevation:2;
+  padding-left:11px;
+  flex-direction:row;
+  align-items:center;
+`;
 export const RadioContainer = styled.View`
   flex:0.5px;
 `;
@@ -94,6 +102,13 @@ export const IconContainer = styled.TouchableOpacity`
 
 
 //Text
+export const BackText = styled.Text`
+  color:#9e9e9e;
+  fontSize:14px;
+  font-family:NunitoSans-SemiBold;
+  margin-left:10px;
+
+`;
 export const TitleText = styled.Text`
   color:${props=> Theme.colors.darkGray};
   font-family:${props=> Theme.fontFamily.bold};
