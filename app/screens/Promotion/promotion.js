@@ -9,7 +9,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native'
-import { MainContainer, DropdownContainer,PromotionContainer,BitTextInput,MainWrapper, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText,ModalIconContainer } from './style';
+import { MainContainer, BackText,BackHeader,DropdownContainer,PromotionContainer,BitTextInput,MainWrapper, MarketPlaceContainer, ImageButtonContainer, DropContainer, IconContainer, ButtonContainer, ToolBar, Container, RadioContainer, InputContainer, CommonContainer, DayContainer, DayBoxView, DayText, TitleText, HeadingText,ModalIconContainer } from './style';
 import CustomButton from '../../components/button/CustomButton';
 import TextInputBox from '../../components/textfield/CustomTextField';
 import RadioForm, {
@@ -26,6 +26,7 @@ import HeaderRightIcon from '../../components/header/HeaderRightIcon';
 import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
 import Card from '../../components/giftCardPopup/giftCard';
 import SaveChanges from './SaveChanges';
+import DateRange from './TimeRange'
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 
@@ -46,9 +47,11 @@ let location_props = [
 
 class PromotionScreen extends React.Component {
   static navigationOptions = (navigation) => ({
-    headerTitle:(<View/>),
-    headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
-    headerRight: (<View/>),
+    headerVisible:false,
+    headerStyle:{
+      width:0,
+      height:0,
+    },
   })
 
   constructor() {
@@ -61,30 +64,47 @@ class PromotionScreen extends React.Component {
         { day:"Thu",selected:false,id:5},{ day:"Fri",selected:false,id:6},{ day:"Sat",selected:false,id:7},
       ],
       value: null,
-      selectedOptionOffer: null,
+      selectedOptionOffer:null,
       selectedOptionPause:null,
       selectedOptionLocation:null,
-      text:'',
+      text:null,
       DataProps:'',
       mode:true,
-      htmlText:'',
-      updatedHTMLText:'',
+      htmlText:null,
+      headLine:'',
+      updatedHTMLText:null,
       modalVisible: false,
       modalName:'',
-      selectedTime:'All Day',
+      selectedTime:'',
       openTimePicker:false,
       openCalendar:false,
       selectedDate:null,
       latitude:'',
       longitude:'',
+      saveValue:false,
+      imagePath:'',
     };
   }
-
   componentWillMount() {
+
+
     if(this.props.navigation.state.params){
+      let data = this.props.navigation.state.params.index
       this.setState({
+        headLine : data.title,
+        updatedHTMLText:data.description,
         DataProps:this.props.navigation.state.params.index
       })
+    }
+  }
+  handleBack = () =>{
+    if(this.state.saveValue)
+    {
+      this.setModalVisible(true,'Save Changes')
+
+    }
+    else{
+      this.props.navigation.goBack()
     }
   }
   showTimePicker = () => this.setState({ openTimePicker: true });
@@ -98,12 +118,13 @@ class PromotionScreen extends React.Component {
   selectedDays = (value,index) => {
     if (value === 'pick hours')
     {
-      this.showTimePicker()
+      this.setModalVisible(true,'Pick Hours')
     }
     else{
       this.hideTimePicker()
     }
     this.setState({
+      saveValue:true,
       selectedTime: value,
     });
   }
@@ -131,6 +152,7 @@ class PromotionScreen extends React.Component {
       this.hideCalendar()
     }
     this.setState({
+      saveValue:true,
       selectedOptionPause: e
     });
   };
@@ -139,15 +161,16 @@ class PromotionScreen extends React.Component {
     if(e == 1 )
     {
       navigator.geolocation.getCurrentPosition(
-       (position) => {
-         this.setState({latitude:position.coords.latitude,longitude:position.coords.longitude})
-       },
-       (error) => {alert(JSON.stringify(error))
-       },
-       {enableHighAccuracy: Platform.OS != 'android', timeout: 20000, maximumAge: 2000 }
-     );
+        (position) => {
+          this.setState({latitude:position.coords.latitude,longitude:position.coords.longitude})
+        },
+        (error) => {alert(JSON.stringify(error))
+        },
+        {enableHighAccuracy: Platform.OS != 'android', timeout: 20000, maximumAge: 2000 }
+      );
     }
     this.setState({
+      saveValue:true,
       selectedOptionLocation: e
     });
   };
@@ -160,6 +183,7 @@ class PromotionScreen extends React.Component {
     .then(image => {
       let imageSrc = `data:${image.mime};base64,${image.data}`;
       console.log(imageSrc);
+      this.setState({imagePath:imageSrc,saveValue:true,})
     });
   }
 
@@ -185,7 +209,8 @@ class PromotionScreen extends React.Component {
         }
       }
       this.setState({
-        date
+        date:date,
+        saveValue:true
       });
     }else{
       let date = this.state.date2;
@@ -196,11 +221,26 @@ class PromotionScreen extends React.Component {
         }
       }
       this.setState({
-        date2:date
+        date2:date,
+        saveValue:true
+
       });
     }
   }
+  onEditorInitialized() {
+    this.setFocusHandlers();
+    //this.getHTML();
+  }
 
+
+  setFocusHandlers() {
+    this.richtext.setTitleFocusHandler(() => {
+      //alert('title focus');
+    });
+    this.richtext.setContentFocusHandler(() => {
+      //alert('content focus');
+    });
+  }
   getHtml = () => {
     if (this.state.mode === true){
       this.richtext.getContentHtml().then((html)=>{
@@ -249,178 +289,194 @@ class PromotionScreen extends React.Component {
       value:'pick hours'
     }
   ];
-    let DataProps = this.state.DataProps
-    return(
-      <MainWrapper>
-        <ScrollView>
-          <PromotionContainer>
-            <TitleText>{DataProps ? 'Edit Promotion' : 'Create New Promotion'}</TitleText>
-            {
-              DataProps.picture ?
-              <CommonContainer>
-                <ImageBackground
-                  source={require('../../../assets/images/layer-1.png')}
-                  resizeMode="cover"
-                  style={{ height: 130, position: "relative",width:320}}
-                  >
-                  <ImageButtonContainer>
-                    <CustomButton
-                      border={"#ffffff"}
-                      width="145"
-                      height="38"
-                      text="Change Picture"
-                      onPress={this.uploadImage}
-                      />
-                  </ImageButtonContainer>
-                </ImageBackground>
-              </CommonContainer>
-              :
-              <CommonContainer>
-                <HeadingText>Picture</HeadingText>
-                <CustomButton
-                  fill={Theme.colors.twitterBlue}
-                  width="120"
-                  text="Upload file"
-                  onPress={this.uploadImage}
-                  />
-              </CommonContainer>
-            }
-
+  let DataProps = this.state.DataProps
+  return(
+    <MainWrapper>
+      <BackHeader >
+        <TouchableOpacity onPress={this.handleBack}>
+          <CustomIcon name={"left-arrow"} />
+        </TouchableOpacity>
+        <BackText >Back</BackText>
+      </BackHeader>
+      <ScrollView>
+        <PromotionContainer>
+          <TitleText>{DataProps ? 'Edit Promotion' : 'Create New Promotion'}</TitleText>
+          {
+            DataProps.picture ?
             <CommonContainer>
-              <TextInputBox
-                label={"Headline"}
-                width={280}
-                placeholder="Enter Promotion’s Title"
-                onChangeText={(text) => this.setState({headline:text})}
-                value={DataProps.title ? DataProps.title : ''}
+              <ImageBackground
+                source={require('../../../assets/images/layer-1.png')}
+                resizeMode="cover"
+                style={{ height: 130, position: "relative",width:320}}
+                >
+                <ImageButtonContainer>
+                  <CustomButton
+                    border={"#ffffff"}
+                    width="145"
+                    height="38"
+                    text="Change Picture"
+                    onPress={this.uploadImage}
+                    />
+                </ImageButtonContainer>
+              </ImageBackground>
+            </CommonContainer>
+            :
+            <CommonContainer>
+              <HeadingText>Picture</HeadingText>
+              <CustomButton
+                fill={Theme.colors.twitterBlue}
+                width="120"
+                text="Upload file"
+                onPress={this.uploadImage}
                 />
             </CommonContainer>
+          }
 
-            <CommonContainer>
-              <HeadingText>Details</HeadingText>
-              <ToolBar>
-                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setBold() : ()=>{}}>
-                  <CustomIcon
-                    name="bold"
-                    height="14"
-                    width="14"
-                    />
-                </IconContainer>
-                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1}  italic onPress={() => this.state.mode ? this.richtext.setItalic() : ()=>{}}>
-                  <CustomIcon
-                    name="italic"
-                    height="12"
-                    width="12"
-                    />
-                </IconContainer>
-                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setUnderline() : ()=>{}}>
-                  <CustomIcon
-                    name="underline"
-                    height="14"
-                    width="14"
-                    />
-                </IconContainer>
+          <CommonContainer>
+            <TextInputBox
+              label={"Headline"}
+              width={280}
+              placeholder="Enter Promotion’s Title"
+              onChangeText={(text) => this.setState({headLine:text,saveValue:true})}
+              value={this.state.headLine}
+              />
+          </CommonContainer>
 
-                <IconContainer>
-                  <CustomIcon
-                    name="line"
-                    height="16"
-                    width="16"
-                    />
-                </IconContainer>
-
-                <IconContainer onPress={this.getHtml}>
-                  <CustomIcon
-                    name="code"
-                    height="14"
-                    width="14"
-                    />
-                </IconContainer>
-
-                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  this.imagePicker : ()=>{}}>
-                  <CustomIcon
-                    name="picture"
-                    height="14"
-                    width="14"
-                    />
-                </IconContainer>
-                <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  () => {this.richtext.prepareInsert(),this.richtext.showLinkDialog(optionalTitle = '', optionalUrl = '')} : ()=>{}}>
-                  <CustomIcon
-                    name="link"
-                    height="14"
-                    width="14"
-                    />
-                </IconContainer>
-              </ToolBar>
-              {
-                this.state.mode ?
-                <RichTextEditor
-                  ref={(r) => this.richtext = r}
-                  hiddenTitle={true}
-                  style={{height:100,width:'100%',backgroundColor:Theme.colors.inputBackgroundColor}}
-                  contentPlaceholder="Enter Promotion’s Description"
-                  initialContentHTML={DataProps.description? DataProps.description : '' }
-                  customCSS={{fontSize:10,fontFamily:Theme.fontFamily.regular,color:Theme.colors.warmGrey}}
-                  editorInitializedCallback={() => this.onEditorInitialized()}
+          <CommonContainer>
+            <HeadingText>Details</HeadingText>
+            <ToolBar>
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setBold() : ()=>{}}>
+                <CustomIcon
+                  name="bold"
+                  height="14"
+                  width="14"
                   />
-                :
-                <TextInput
-                  onChangeText={(updatedHTMLText) => this.setState({updatedHTMLText})}
-                  value={this.state.updatedHTMLText}
-                  multiline = {true}
-                  numberOfLines = {4}
-                  underlineColorAndroid="transparent"
-                  style={{textAlignVertical:"top",backgroundColor:Theme.colors.inputBackgroundColor,height:100}}
-                  />}
-                </CommonContainer>
+              </IconContainer>
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1}  italic onPress={() => this.state.mode ? this.richtext.setItalic() : ()=>{}}>
+                <CustomIcon
+                  name="italic"
+                  height="14"
+                  width="14"
+                  />
+              </IconContainer>
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={() => this.state.mode ? this.richtext.setUnderline() : ()=>{}}>
+                <CustomIcon
+                  name="underline"
+                  height="14"
+                  width="14"
+                  />
+              </IconContainer>
 
-                <CommonContainer>
-                  <HeadingText>Offer</HeadingText>
-                  <Container>
-                    <RadioContainer>
-                      <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
-                        {radio_props.map((obj, i) => {
-                          return (
-                            <RadioButton key={i} style={{padding:this.state.selectedOptionOffer == 0 ? 8 : 2}} >
-                              <RadioButtonInput
-                                obj={obj}
-                                index={i}
-                                initial={1}
-                                isSelected={this.state.selectedOptionOffer === i}
-                                onPress={this.handleRadioClick}
-                                borderWidth={1}
-                                buttonSize={5}
-                                buttonOuterSize={15}
-                                buttonStyle={{ borderWidth: 1 }}
-                                />
-                              <RadioButtonLabel
-                                obj={obj}
-                                index={i}
-                                onPress={this.handleRadioClick}
-                                labelStyle={{
-                                  fontSize: Theme.fontSize.midregular,
-                                  fontFamily: Theme.fontFamily.regular,
-                                  color: Theme.colors.darkGray,
-                                  marginLeft: 10
-                                }}
-                                />
-                            </RadioButton>
-                          );
-                        })}
-                      </RadioForm>
-                    </RadioContainer>
-                    <InputContainer>
-                      {
-                        this.state.selectedOptionOffer == 0 ?
-                        <BitTextInput
-                          onChangeText={(text) => this.setState({text})}
-                          value={this.state.text}
-                          placeholder="Coin amount"
-                          placeholderTextColor={Theme.colors.warmGrey}
-                          underlineColorAndroid="transparent"
-                          />: null}
-                        </InputContainer>
-                      </Container>
+              <IconContainer>
+                <CustomIcon
+                  name="line"
+                  height="16"
+                  width="16"
+                  />
+              </IconContainer>
+
+              <IconContainer onPress={this.getHtml}>
+                <CustomIcon
+                  name="code"
+                  height="16"
+                  width="16"
+                  />
+              </IconContainer>
+
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  this.imagePicker : ()=>{}}>
+                <CustomIcon
+                  name="picture"
+                  height="16"
+                  width="16"
+                  />
+              </IconContainer>
+              <IconContainer activeOpacity={this.state.mode ? 0.2 : 1} onPress={this.state.mode ?  () => {this.richtext.prepareInsert(),this.richtext.showLinkDialog(optionalTitle = '', optionalUrl = '')} : ()=>{}}>
+                <CustomIcon
+                  name="link"
+                  height="14"
+                  width="14"
+                  />
+              </IconContainer>
+            </ToolBar>
+            {
+              this.state.mode ?
+              <RichTextEditor
+                ref={(r) => this.richtext = r}
+                hiddenTitle={true}
+                style={{height:100,backgroundColor:Theme.colors.inputBackgroundColor}}
+                contentPlaceholder="Enter Promotion’s Description"
+                initialContentHTML={this.state.updatedHTMLText }
+                customCSS={{fontSize:10,fontFamily:Theme.fontFamily.regular,color:Theme.colors.warmGrey}}
+                editorInitializedCallback={() => this.onEditorInitialized()}
+                />
+              :
+              <TextInput
+                onChangeText={(updatedHTMLText) => this.setState({updatedHTMLText,saveValue:true})}
+                value={this.state.updatedHTMLText}
+                multiline = {true}
+                numberOfLines = {4}
+                underlineColorAndroid="transparent"
+                style={{textAlignVertical:"top",backgroundColor:Theme.colors.inputBackgroundColor,height:100}}
+                />}
+              </CommonContainer>
+
+              <CommonContainer>
+                <HeadingText>Offer</HeadingText>
+                <Container>
+                  <RadioContainer>
+                    <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
+                      {radio_props.map((obj, i) => {
+                        return (
+                          <RadioButton key={i} style={{padding:this.state.selectedOptionOffer == 0 ? 8 : 2}} >
+                            <RadioButtonInput
+                              obj={obj}
+                              index={i}
+                              initial={1}
+                              isSelected={this.state.selectedOptionOffer === i}
+                              onPress={this.handleRadioClick}
+                              borderWidth={1}
+                              buttonSize={5}
+                              buttonOuterSize={15}
+                              buttonStyle={{ borderWidth: 1 }}
+                              />
+                            <RadioButtonLabel
+                              obj={obj}
+                              index={i}
+                              onPress={this.handleRadioClick}
+                              labelStyle={{
+                                fontSize: Theme.fontSize.midregular,
+                                fontFamily: Theme.fontFamily.regular,
+                                color: Theme.colors.darkGray,
+                                marginLeft: 10
+                              }}
+                              />
+                          </RadioButton>
+                        );
+                      })}
+                    </RadioForm>
+                  </RadioContainer>
+                  <InputContainer>
+                    {
+                      this.state.selectedOptionOffer == 0 ?
+                      <BitTextInput
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}
+                        placeholder="Coin amount"
+                        placeholderTextColor={Theme.colors.warmGrey}
+                        underlineColorAndroid="transparent"
+                        />: null}
+                      </InputContainer>
+                    </Container>
+                    {
+                      this.state.selectedOptionOffer == 1 ?
+                      <BitTextInput
+                        onChangeText={(text) => this.setState({text})}
+                        value={this.state.text}
+                        placeholder="Enter Promotion"
+                        placeholderTextColor={Theme.colors.warmGrey}
+                        underlineColorAndroid="transparent"
+                        />
+                      : null}
                     </CommonContainer>
                   </PromotionContainer>
 
@@ -567,7 +623,6 @@ class PromotionScreen extends React.Component {
                         <CustomButton
                           onPress={() => {
                             this.props.navigation.goBack(null);
-                            //this.setModalVisible(true,'Save Changes');
                           }}
                           fill={Theme.colors.lightBlue}
                           width="310"
@@ -597,7 +652,8 @@ class PromotionScreen extends React.Component {
                               this.state.modalName=='Save Changes'?
                               <SaveChanges  setModalVisible={this.setModalVisible}/>
                               :
-                              null
+                              <DateRange  setModalVisible={this.setModalVisible}/>
+
                             }
                           </Card>
                         </ScrollView>

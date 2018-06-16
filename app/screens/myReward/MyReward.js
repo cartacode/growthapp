@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Dimensions,
+  Dimensions,Modal,
 } from 'react-native'
 import Theme from '../../../theme';
 import {
@@ -18,21 +18,35 @@ import {
   ContentContainer,
   ContentText,
   InnerContainer,
-  RewardText
+  RewardText,
+  IconContainer
 } from './style';
 import CustomButton from '../../components/button/CustomButton';
 let { height, width } = Dimensions.get("window");
 import HeaderRightIcon from '../../components/header/HeaderRightIcon';
 import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
+import LoyaltyReward from '../loyalty/LoyaltyReward';
+import CustomIcon from '../../components/icon/svgicon';
+import Card from '../../components/giftCardPopup/giftCard';
 
 
 class MyReward extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+     modalVisible: false,
+     modalName:''
+   }
+  }
+
   static navigationOptions = (navigation) => ({
     headerTitle:(<View/>),
     headerLeft: (<HeaderLeftIcon icon={'left-arrow'} {...navigation}/>),
     headerRight: (<View/>),
   })
-
+  setModalVisible = (visible,modal) => {
+    this.setState({modalVisible: visible,modalName:modal});
+  }
   render () {
     return(
       <MainContainer>
@@ -50,7 +64,9 @@ class MyReward extends React.Component {
                   width="115"
                   height="33"
                   text="Edit"
-
+                  onPress={() => {
+                    this.setModalVisible(true,'Loyalty Reward');
+                  }}
                   />
               </RowContainer>
               <InnerContainer>
@@ -68,7 +84,9 @@ class MyReward extends React.Component {
                     width="115"
                     height="33"
                     text="Edit"
-
+                    onPress={() => {
+                      this.setModalVisible(true,'Loyalty Reward');
+                    }}
                     />
                 </RowContainer>
                 <InnerContainer>
@@ -77,6 +95,33 @@ class MyReward extends React.Component {
                   </InnerContainer>
               </ContentContainer>
         </CardContainer>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        >
+        <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
+          <IconContainer onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}>
+            <CustomIcon
+              name="cross"
+              fill='#000000'
+              height="15"
+              width="15"
+              />
+          </IconContainer>
+          <ScrollView>
+            <Card title={this.state.modalName}>
+              {
+                this.state.modalName=='Loyalty Reward'?
+                <LoyaltyReward  setModalVisible={this.setModalVisible}/>
+                : null
+            }
+            </Card>
+          </ScrollView>
+        </View>
+      </Modal>
         </MainContainer>
       )
     }

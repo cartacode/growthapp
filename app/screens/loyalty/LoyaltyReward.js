@@ -33,7 +33,7 @@ class LoyaltyReward extends React.Component {
   }
   onProductChange = () => {
     this.setState({
-      productChecked : true,
+      productChecked : !this.state.productChecked,
       amountChecked:false,
 
     })
@@ -41,18 +41,18 @@ class LoyaltyReward extends React.Component {
   onAmountCheckedChange = () => {
     this.setState({
       productChecked : false,
-      amountChecked:true,
+      amountChecked:!this.state.amountChecked,
         })
   }
 
   onRewardCheckedChange = () => {
     this.setState({
-      RewardCoin:true,
+      RewardCoin:!this.state.RewardCoin,
     })
   }
   onFreeProductChange = () => {
     this.setState({
-      freeProduct:true,
+      freeProduct:!this.state.freeProduct,
     })
   }
   render(){
