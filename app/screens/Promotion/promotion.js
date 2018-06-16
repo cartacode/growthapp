@@ -357,7 +357,7 @@ class PromotionScreen extends React.Component {
                 <RichTextEditor
                   ref={(r) => this.richtext = r}
                   hiddenTitle={true}
-                  style={{height:100,backgroundColor:Theme.colors.inputBackgroundColor}}
+                  style={{height:100,width:'100%',backgroundColor:Theme.colors.inputBackgroundColor}}
                   contentPlaceholder="Enter Promotion’s Description"
                   initialContentHTML={DataProps.description? DataProps.description : '' }
                   customCSS={{fontSize:10,fontFamily:Theme.fontFamily.regular,color:Theme.colors.warmGrey}}
@@ -370,7 +370,7 @@ class PromotionScreen extends React.Component {
                   multiline = {true}
                   numberOfLines = {4}
                   underlineColorAndroid="transparent"
-                  style={{backgroundColor:Theme.colors.inputBackgroundColor,height:100}}
+                  style={{textAlignVertical:"top",backgroundColor:Theme.colors.inputBackgroundColor,height:100}}
                   />}
                 </CommonContainer>
 

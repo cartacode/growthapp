@@ -83,14 +83,13 @@ export const ToolBar =styled.View`
   flex-direction:row;
   background-color:#e0e0e0;
   justify-content:flex-start;
-  align-items:flex-start;
-  padding-left:20px;
-  padding-top:10px;
-  padding-bottom:10px;
+  align-items:center;
+  padding-left:10px
 `;
 export const IconContainer = styled.TouchableOpacity`
-  margin-right:20px;
-  margin-top:${props => props.italic ? '2px' : '0px'};
+  padding:8px
+  padding-left:10px
+  padding-right:10px
 `;
 
 
