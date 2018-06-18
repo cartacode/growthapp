@@ -383,5 +383,16 @@ export default class CustomIcon extends Component {
       </Svg>
       );
     }
+    else if (this.props.name === "correct") {
+      return (
+        <Svg
+          height={this.props.height ? this.props.height : "17"}
+          width={this.props.width ? this.props.width : "17"}
+          viewBox="0 0 335.765 335.765"
+          >
+          <Polygon  points="311.757,41.803 107.573,245.96 23.986,162.364 0,186.393 107.573,293.962 335.765,65.795"/>
+      </Svg>
+      );
+    }
   }
 }
