@@ -87,7 +87,6 @@ class PromotionScreen extends React.Component {
   }
   componentWillMount() {
 
-
     if(this.props.navigation.state.params){
       let data = this.props.navigation.state.params.index
       this.setState({
@@ -120,9 +119,7 @@ class PromotionScreen extends React.Component {
     {
       this.setModalVisible(true,'Pick Hours')
     }
-    else{
-      this.hideTimePicker()
-    }
+
     this.setState({
       saveValue:true,
       selectedTime: value,
@@ -652,7 +649,7 @@ class PromotionScreen extends React.Component {
                               this.state.modalName=='Save Changes'?
                               <SaveChanges  setModalVisible={this.setModalVisible}/>
                               :
-                              <DateRange  setModalVisible={this.setModalVisible}/>
+                              <DateRange selectedDays={this.selectedDays} setModalVisible={this.setModalVisible}/>
 
                             }
                           </Card>
