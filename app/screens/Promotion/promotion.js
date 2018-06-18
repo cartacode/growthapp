@@ -76,7 +76,6 @@ class PromotionScreen extends React.Component {
       modalVisible: false,
       modalName:'',
       selectedTime:'',
-      openTimePicker:false,
       openCalendar:false,
       selectedDate:null,
       latitude:'',
@@ -106,9 +105,6 @@ class PromotionScreen extends React.Component {
       this.props.navigation.goBack()
     }
   }
-  showTimePicker = () => this.setState({ openTimePicker: true });
-
-  hideTimePicker = () => this.setState({ openTimePicker: false });
 
   showCalendar = () => this.setState({ openCalendar: true });
 
@@ -125,16 +121,12 @@ class PromotionScreen extends React.Component {
       selectedTime: value,
     });
   }
-  ChangeDate  = (time) => {
+  ChangeDate  = (date) => {
     this.setState({selectedDate: date})
     this.hideCalendar();
 
   }
-  ChangeTime  = (date) => {
-    alert(moment(date).format('LT'))
-    this.hideTimePicker();
 
-  }
   handleRadioClick = e => {
     this.setState({
       selectedOptionOffer: e
@@ -497,7 +489,7 @@ class PromotionScreen extends React.Component {
                         {
                           this.state.date.map((e)=>{
                             return(
-                              <DayBoxView selected={e.selected}  onPress={() => this.handleDay(e)}>
+                              <DayBoxView selected={e.selected}   key={e.id} onPress={() => this.handleDay(e)}>
                                 <DayText selected={e.selected}>{e.day}</DayText>
                               </DayBoxView>
                             )
@@ -509,7 +501,7 @@ class PromotionScreen extends React.Component {
                         {
                           this.state.date2.map((e)=>{
                             return(
-                              <DayBoxView selected={e.selected} day={e.day} onPress={() => this.handleDay(e)}>
+                              <DayBoxView selected={e.selected} key={e.id} day={e.day} onPress={() => this.handleDay(e)}>
                                 <DayText selected={e.selected} day={e.day}>{e.day}</DayText>
                               </DayBoxView>
                             )
@@ -528,18 +520,6 @@ class PromotionScreen extends React.Component {
                         </DropdownContainer>
                       </DropContainer>
                     </CommonContainer>
-                    { this.state.openTimePicker ?
-                      <CommonContainer>
-                        <DateTimePicker
-                          isVisible={this.state.openTimePicker}
-                          onCancel={this.hideTimePicker}
-                          style={{width: 290}}
-                          mode="time"
-                          placeholder="select time"
-                          onConfirm={this.ChangeTime}
-                          />
-                      </CommonContainer>
-                      : null }
                       <CommonContainer>
                         <HeadingText>Pause</HeadingText>
                         <RadioForm animation={false} style={{ alignItems: "flex-start" }}>
@@ -576,9 +556,7 @@ class PromotionScreen extends React.Component {
                         <CommonContainer>
                           <DateTimePicker
                             isVisible={this.state.openCalendar}
-                            onCancel={this.hideCalendar()}
-                            mode="date"
-                            placeholder="select Date"
+                            onCancel={this.hideCalendar}
                             onConfirm={this.ChangeDate}
                             />
                         </CommonContainer>
@@ -647,7 +625,7 @@ class PromotionScreen extends React.Component {
                           <Card title={this.state.modalName}>
                             {
                               this.state.modalName=='Save Changes'?
-                              <SaveChanges  setModalVisible={this.setModalVisible}/>
+                              <SaveChanges navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
                               :
                               <DateRange selectedDays={this.selectedDays} setModalVisible={this.setModalVisible}/>
 

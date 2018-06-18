@@ -23,6 +23,7 @@ import {MainContainer,
   import LoginScreen from '../login/LoginScreen';
   import BusinessInformation from '../business/BusinessInformation';
   import CreateWallet from '../createwallet/CreateWalletScreen'
+  import RecoverPassword from '../recoverpassword/RecoverPassword'
   class HomeScreen extends React.Component {
     static navigationOptions = {
       headerVisible:false,
@@ -97,7 +98,10 @@ import {MainContainer,
                     <LoginScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
                   : this.state.modalName=='Business Information' ?
                 <BusinessInformation navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-                : <CreateWallet navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
+                : this.state.modalName=='Recover Password' ?
+                <RecoverPassword navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
+                :
+                <CreateWallet navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
 
               }
               </Card>
