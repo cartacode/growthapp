@@ -104,9 +104,6 @@ class LoyaltyReward extends React.Component {
           />
           </TextInputContainer>
         </TextInputsContainer>
-        <AddProductText>
-          Add another product
-        </AddProductText>
         <RewardContainer>
           <ConsumerText>Reward with</ConsumerText>
           <CheckboxConatiner>

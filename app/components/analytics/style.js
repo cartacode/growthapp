@@ -3,9 +3,7 @@ import Theme from '../../../theme';
 export const MainContainer = styled.View`
   flex:1;
   background-color:#fafafa;
-  align-items:center;
-  padding:15px 10px;
-
+  padding:20px;
 `;
 export const CardContainer = styled.View`
   background-color:#ffffff;
@@ -39,8 +37,6 @@ margin-bottom:5px;
 `;
 export const ChartContainer = styled.View`
  height: 300px;
-  padding: 0px 10px 0px 10px;
-  flex-direction: row;
   position:relative;
   width:335px;
 `;

@@ -35,16 +35,18 @@ class AccountScreen extends React.Component {
       height:0,
     },
   }
-
-state = {
-  index: 0,
-  routes: [
-    { key: "0", title: "Notifications" },
-    { key: "1", title: "Settings" }
-  ],
-  modalVisible: false,
-  modalName:''
-};
+  constructor(props){
+    super(props)
+    this.state = {
+      index: 0,
+      routes: [
+        { key: "0", title: "Notifications" },
+        { key: "1", title: "Settings" }
+      ],
+      modalVisible: false,
+      modalName:''
+    };
+  }
 setModalVisible = (visible,modal) => {
   this.setState({modalVisible: visible,modalName:modal});
 }
@@ -106,8 +108,8 @@ _renderHeader = props => (
 );
 
 _renderScene = SceneMap({
-  0: () => <Notifiaction setModalVisible={this.setModalVisible} />,
-  1: () => <SettingComponent />
+  0: () => <Notifiaction handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation}  />,
+  1: () => <SettingComponent navigation={this.props.navigation} />
 });
 render() {
   return (

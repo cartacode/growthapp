@@ -25,10 +25,10 @@ class Notification extends React.Component {
     return(
       <ScrollView>
         <MainContainer>
-          <NotificationRow DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
-          <NotificationRow DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
-          <NotificationRow DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
-          <NotificationRow DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
+          <NotificationRow handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
+          <NotificationRow handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
+          <NotificationRow handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
+          <NotificationRow handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} DateText={'17 May, 2018 - 1:34 pm'} balance={'50'} username={'John Doe'} setModalVisible={this.props.setModalVisible}/>
         </MainContainer>
       </ScrollView>
     )
