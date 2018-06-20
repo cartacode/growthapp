@@ -13,7 +13,7 @@ import styled from "styled-components/native";
   width:10px;
   background-color:${props => props.color ? props.color:Theme.colors.redBalehu};
   border-radius:5px;
-  margin-right:10px;
+  margin-right:${props => props.value ? `7px`:`10px` };
 `;
 export const RoundContentContainer =styled.View`
 flex-direction: row;
@@ -28,9 +28,9 @@ font-size:${props=> Theme.fontSize.small};
 `;
 export const ValueText = styled.Text`
 color:${props => Theme.colors.darkGray};
-margin-right:10px;
+margin-right:8px;
 font-family:${props=> Theme.fontFamily.bold};
-font-size:${props=> Theme.fontSize.header};
+font-size:${props=> Theme.fontSize.medium};
 `;
 class RowComponent extends React.Component {
   static navigationOptions = {
@@ -46,7 +46,8 @@ class RowComponent extends React.Component {
     return(
       this.props.value ?
       <RoundContentContainer>
-        <RoundContainer color={this.props.color}/>
+        <RoundContainer value
+          color={this.props.color}/>
         <ValueText>{this.props.value}</ValueText>
         <TitleText>{this.props.text}</TitleText>
         </RoundContentContainer>

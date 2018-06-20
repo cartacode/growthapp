@@ -92,8 +92,10 @@ class PromotionRow extends React.Component {
             fontSize={Theme.fontSize.small}
             width="85"
             height="33"
-
-            text="Analytics"/>
+            text="Analytics"
+            onPress={()=>{
+              this.props.navigation.navigate('Analytics');
+            }}/>
         </ButtonContainer>
 
       </BottomRowContainer>

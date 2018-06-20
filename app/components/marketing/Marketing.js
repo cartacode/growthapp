@@ -92,7 +92,7 @@ class Marketing extends React.Component {
               </ButtonContainer>
             </CardContainer>
             <Analytics
-              title={'Analytics:'}
+              title={'Analytics'}
               subtitle={'The French Cuisine'}
               reachColor={'rgba(230,61,48,0.7)'}
               engageColor={'rgba(230,61,48,0.3)'}

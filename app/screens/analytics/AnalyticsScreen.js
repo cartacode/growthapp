@@ -8,40 +8,27 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import {
-  MainContainer,
-  CardContainer,
-  TitleContainer,
-  HeaderText,
-  TitleText,
-  ChartContainer,
-  ChartInnerContainer,
-  RoundContentContainer,
-  DetailCardContainer,
-  ButtonContainer,
-  HeaderContainer,
-  DateText} from './style.js';
-  import {
-    VictoryChart,
-    VictoryArea,VictoryAxis,
-    VictoryLine,
-    VictoryVoronoiContainer,
-    VictoryTooltip} from "victory-native";
-    import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
-    let { height, width } = Dimensions.get("window");
-    import HeaderRightIcon from '../../components/header/HeaderRightIcon';
-    import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
-    import CustomButton from '../../components/button/CustomButton';
-    import RowComponent from './RowComponent.js'
-    import CustomTooltip from './CustomTooltip'
-    import Analytics from '../../components/analytics/Analytics'
+import styled from "styled-components/native";
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+let { height, width } = Dimensions.get("window");
+import HeaderRightIcon from '../../components/header/HeaderRightIcon';
+import HeaderLeftIcon from '../../components/header/HeaderLeftIcon';
+import CustomButton from '../../components/button/CustomButton';
+import PromotionAnalytics from '../../components/analytics/PromotionAnalytics'
+ const MainContainer = styled.View`
+  flex:1;
+  background-color:#fafafa;
+  align-items:center;
+  padding:15px 10px;
+
+`;
 const initialLayout = {
       height: 0,
       width: Dimensions.get("window").width
     };
 
-  const FirstRoute = () => <Analytics/>;
-  const SecondRoute = () => <LoyaltyRewards />;
+const FirstRoute = () => <PromotionAnalytics/>;
+const SecondRoute = () => <LoyaltyRewards />;
 
 class AnalyticsScreen extends React.PureComponent {
   static navigationOptions = (navigation) => ({
@@ -109,7 +96,8 @@ class AnalyticsScreen extends React.PureComponent {
         backgroundColor: "#ffffff",
         elevation: 0,
         marginLeft: 10,
-        marginRight: 10
+        marginRight: 10,
+        marginBottom:3,
       }}
       indicatorStyle={{ opacity: 0 }}
       tabStyle={{ padding: 0, height: 45, overflow: "hidden" }}
@@ -117,7 +105,7 @@ class AnalyticsScreen extends React.PureComponent {
   );
 
   _renderScene = SceneMap({
-    0: () => <Analytics title={'Promotion:'} subtitle={'Wednesday’s Free Drinks'} reachColor={'rgba(63,81,181,0.7)'} engageColor={'rgba(63,81,181,0.3)'} redeemColor={'rgb(244,67,54)'}/>,
+    0: () => <PromotionAnalytics/>,
     1: () => <View />
 });
 

@@ -35,7 +35,7 @@ import {MainContainer,
 
     render () {
       return(
-        <ImageBackground resizeMode="cover" source={require('../../../assets/images/1_background_img.jpg')} style={{flex:1,width:'100%',justifyContent:'center',alignItems:'center'}}>
+        <ImageBackground resizeMode="cover" source={require('../../../assets/images/background_img.jpg')} style={{flex:1,width:'100%',justifyContent:'center',alignItems:'center'}}>
           <LogoContainer>
           <CustomIcon name="logo"/>
           </LogoContainer>

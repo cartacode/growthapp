@@ -20,6 +20,10 @@ class SaveChanges extends React.Component {
       height:0,
     },
   }
+  handleClick = () => {
+    this.props.setModalVisible(false)
+    this.props.navigation.navigate('Marketing')
+  }
   render(){
   return(
       <View>
@@ -30,13 +34,13 @@ class SaveChanges extends React.Component {
             fill={Theme.colors.inputBackgroundColor}
             width="260"
             text="Discard Changes"
-            onPress={() => {this.props.navigation.navigate('Marketing')}}/>
+            onPress={this.handleClick}/>
           <ChangesButtonContainer>
             <CustomButton
               fill={Theme.colors.lightBlue}
               width="260"
               text="Save Changes"
-              onPress={() => {this.props.navigation.navigate('Marketing')}} />
+              onPress={this.handleClick} />
           </ChangesButtonContainer>
         </ButtonContainer>
       </View>

@@ -8,7 +8,7 @@ export const MainContainer = styled.View`
 export const CardContainer = styled.View`
   background-color:#ffffff;
   elevation:2;
-  margin:20px 15px 15px 15px;
+  margin:20px 15px 0px 15px;
 `;
 
 export const HeaderText = styled.Text`
@@ -54,12 +54,12 @@ margin-left:50px;
 export const DetailCardContainer = styled.View`
   background-color:#ffffff;
   elevation:3;
-  width:150px;
+  width:120px;
   align-items:flex-start;
-  padding:10px 15px;
+  padding:5px 10px;
   position:absolute;
-  top:50%;
-  left:40%;
+  top:45%;
+  left:35%;
 `;
 export const ButtonContainer = styled.View`
 justify-content:space-between;

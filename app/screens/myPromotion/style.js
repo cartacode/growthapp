@@ -31,5 +31,4 @@ text-align:left;
 export const TabContainer = styled.View`
 border-bottom-width:1px;
 border-bottom-color: #DCDCDC;
-width:320;
 `;

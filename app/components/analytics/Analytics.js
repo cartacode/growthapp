@@ -36,7 +36,6 @@ import {
       render() {
 
         return (
-          <ScrollView contentContainerStyle={{paddingBottom:20,alignItems:'center',justifyContent:'center'}}>
           <CardContainer>
             <HeaderContainer>
               <HeaderText>{this.props.title}</HeaderText>
@@ -54,6 +53,7 @@ import {
                 containerComponent={
                   <VictoryVoronoiContainer voronoiDimension="x"
                     labels={(d) => `y: ${d.y}`}
+                    renderInPortal={true}
                     labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{fill: "white"}}/>}
                     />
                 }
@@ -101,15 +101,22 @@ import {
 
             </VictoryChart>
           </ChartContainer>
-          <ButtonContainer>
-            <CustomButton
-              fill={Theme.colors.skyBlue}
-              width={280}
-              text={"View All Analytics"}  />
-          </ButtonContainer>
-
+          {this.props.title == "Analytics" ?
+              <ButtonContainer>
+                <CustomButton
+                  fill={Theme.colors.skyBlue}
+                  width={280}
+                  text={"View All Analytics"}  />
+              </ButtonContainer>
+              : null
+          }
+          <DetailCardContainer>
+            <DateText>Mar 4, 2018</DateText>
+            <RowComponent color={this.props.reachColor} text="Reach" value='49' />
+            <RowComponent color={this.props.engageColor} text="Engaged" value='38' />
+            <RowComponent color={this.props.redeemColor} text="Redeems" value='12' />
+          </DetailCardContainer>
         </CardContainer>
-        </ScrollView>
       )
     }
   }
