@@ -59,7 +59,7 @@ export const DetailCardContainer = styled.View`
   align-items:flex-start;
   padding:5px 10px;
   position:absolute;
-  top:45%;
+  top:${props=> props.Analytics == "Analytics" ? `45%` : `55%`};
   left:35%;
 `;
 export const ButtonContainer = styled.View`

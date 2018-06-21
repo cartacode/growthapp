@@ -102,6 +102,7 @@ import {
             </VictoryChart>
           </ChartContainer>
           {this.props.title == "Analytics" ?
+
               <ButtonContainer>
                 <CustomButton
                   fill={Theme.colors.skyBlue}
@@ -111,9 +112,10 @@ import {
                     this.props.navigation.navigate('AnalyticPage');
                   }}  />
               </ButtonContainer>
+
               : null
           }
-          <DetailCardContainer>
+          <DetailCardContainer Analytics={this.props.title == "Analytics" ? "Analytics" : '' }>
             <DateText>Mar 4, 2018</DateText>
             <RowComponent color={this.props.reachColor} text="Reach" value='49' />
             <RowComponent color={this.props.engageColor} text="Engaged" value='38' />
