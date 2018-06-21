@@ -24,13 +24,13 @@
     "react-native-richtext-editor": "git+https://github.com/hiteshagja/react-native-zss-rich-text-editor.git",
     "react-native-simple-radio-button": "^2.7.1",
     "react-native-svg": "5.5.1",
-    "react-native-svg-charts": "^5.2.0",
     "react-native-swiper": "^1.5.13",
     "react-native-tab-view": "0.0.78",
     "react-native-webview-bridge": "^0.33.0",
     "react-native-zss-rich-text-editor": "^1.1.0",
     "react-navigation": "^2.0.1",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.2.6",
+    "victory-native": "^0.18.1"
   },
   "devDependencies": {
     "babel-jest": "23.0.1",

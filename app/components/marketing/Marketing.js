@@ -16,10 +16,11 @@ import {
   ButtonContainer,
   TitleText,
   IconContainer,
-  InnerButtonContainer
+  InnerButtonContainer,
+  AnalyticContainer
 } from './style';
 import CustomButton from '../button/CustomButton';
-import AnalyticsScreen from '../../screens/analytics/AnalyticsScreen'
+import Analytics from '../analytics/Analytics'
 import Card from '../giftCardPopup/giftCard'
 import LoyaltyReward from '../../screens/loyalty/LoyaltyReward';
 import CustomIcon from '../icon/svgicon';
@@ -90,13 +91,13 @@ class Marketing extends React.Component {
               </InnerButtonContainer>
               </ButtonContainer>
             </CardContainer>
-            <CardContainer>
-              <TitleContainer>
-                <TitleText>Analytics</TitleText>
-              </TitleContainer>
-            <AnalyticsScreen
+            <Analytics
+              title={'Analytics'}
+              subtitle={'The French Cuisine'}
+              reachColor={'rgba(230,61,48,0.7)'}
+              engageColor={'rgba(230,61,48,0.3)'}
+              redeemColor={'rgb(0,150,136)'}
               navigation={this.props.navigation} />
-            </CardContainer>
             <Modal
               animationType="slide"
               transparent={true}

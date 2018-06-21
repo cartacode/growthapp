@@ -102,7 +102,7 @@ class Notification extends React.Component {
               <Card title={this.state.modalName}>
                 {
                   this.state.modalName=='Transfer Notification'?
-                    <TransferNotification setModalVisible={this.setModalVisible} />
+                    <TransferNotification handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
                   : null
               }
               </Card>

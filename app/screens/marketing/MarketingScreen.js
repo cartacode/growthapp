@@ -31,7 +31,7 @@ class MarketingScreen extends React.Component {
     super(props)
     const index =  this.props.navigation.getParam('index');
     this.state = {
-      index: index ? index : 0,
+      index: index ? index : 1,
       routes: [
         { key:'0', title: 'Sales' },
         { key:'1', title: 'Marketing' },
@@ -67,8 +67,8 @@ class MarketingScreen extends React.Component {
     _renderScene = SceneMap({
       0: () =>  <View />,
       1: () => <Marketing navigation={this.props.navigation} />,
-      2:() => <Wallet />,
-      3:() => <Account />
+      2:() => <Wallet navigation={this.props.navigation} />,
+    3:() => <Account handleIndexChange={this._handleIndexChange}navigation={this.props.navigation} />
 });
 
 render() {

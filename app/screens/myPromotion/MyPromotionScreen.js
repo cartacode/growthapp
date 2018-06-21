@@ -53,7 +53,7 @@ class MyPromotion extends React.Component {
 
   _renderLabel = ({route, index}) => {
     return <View>
-      <Text style={{fontSize:12,color:route.key == this.state.index? Theme.colors.blue : Theme.colors.darkGray,fontFamily:'NunitoSans-Bold'}}>{route.title}</Text>
+      <Text style={{fontSize:14,color:route.key == this.state.index? Theme.colors.blue : Theme.colors.darkGray,fontFamily:'NunitoSans-Bold'}}>{route.title}</Text>
     </View>
   }
 
@@ -63,7 +63,7 @@ class MyPromotion extends React.Component {
     {...props}
     renderLabel={this._renderLabel}
     style = {{backgroundColor:'#ffffff',shadowOpacity:0}}
-    tabStyle = {{height:50,width:60}}
+    tabStyle = {{height:50}}
     indicatorStyle={{ backgroundColor: Theme.colors.blue }}
     />
 </TabContainer>
