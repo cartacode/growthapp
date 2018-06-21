@@ -106,7 +106,10 @@ import {
                 <CustomButton
                   fill={Theme.colors.skyBlue}
                   width={280}
-                  text={"View All Analytics"}  />
+                  text={"View All Analytics"}
+                  onPress={()=>{
+                    this.props.navigation.navigate('AnalyticPage');
+                  }}  />
               </ButtonContainer>
               : null
           }

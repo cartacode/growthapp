@@ -94,7 +94,7 @@ class PromotionRow extends React.Component {
             height="33"
             text="Analytics"
             onPress={()=>{
-              this.props.navigation.navigate('Analytics');
+              this.props.navigation.navigate('SingleAnalytics');
             }}/>
         </ButtonContainer>
 

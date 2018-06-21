@@ -39,6 +39,7 @@ export const ChartContainer = styled.View`
  height: 300px;
   position:relative;
   width:335px;
+  padding-bottom:30px;
 `;
 export const ChartInnerContainer =styled.View`
 flex: 1;
