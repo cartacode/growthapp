@@ -34,7 +34,7 @@ class CoinTabScreen extends React.Component {
             </LabelContainer>
             <TextInput
               label={"Amount"}
-              width={260}
+              width={'100%'}
               placeholder="0.00 BAL 0 USD"
             />
         </AmountContainer>

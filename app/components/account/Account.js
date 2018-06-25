@@ -17,6 +17,8 @@ import SettingComponent from "../settings/Settings";
 import Notifiaction from "../notification/Notification";
 import CustomIcon from '../icon/svgicon';
 import Card from '../giftCardPopup/giftCard';
+import TranscationHistory from '../../screens/history/TranscationHistory';
+import TransferNotification from '../../screens/transferNotification/transferNotification';
 var { height, width } = Dimensions.get("window");
 const initialLayout = {
   height: 0,
@@ -28,25 +30,28 @@ const SecondRoute = () => <SettingComponent />;
 
 class AccountScreen extends React.Component {
 
-  static navigationOptions = {
-    headerVisible:false,
-    headerStyle:{
-      width:0,
-      height:0,
-    },
-  }
-  constructor(props){
-    super(props)
-    this.state = {
-      index: 0,
-      routes: [
-        { key: "0", title: "Notifications" },
-        { key: "1", title: "Settings" }
-      ],
-      modalVisible: false,
-      modalName:''
-    };
-  }
+  static navigationOptions = navigation => ({
+    headerTitle: <HeaderTitle title="Add friend" />,
+  headerLeft: (
+    <HeaderLeftIcon
+      accessible={true}
+      style={{ marginTop: 8 }}
+      accessibilityLabel="Close"
+      icon="close"
+      {...navigation}
+      />
+  ),
+  headerRight: <View />
+});
+state = {
+  index: 0,
+  routes: [
+    { key: "0", title: "Notifications" },
+    { key: "1", title: "Settings" }
+  ],
+  modalVisible: false,
+  modalName:''
+};
 setModalVisible = (visible,modal) => {
   this.setState({modalVisible: visible,modalName:modal});
 }
@@ -64,9 +69,7 @@ _renderLabel = ({ route, index }) => {
         width: "100%",
         backgroundColor:
         route.key == this.state.index ? Theme.colors.lightBlue : '#ffffff',
-
         borderRightWidth: route.key == 0 ? 1 : 0,
-
         borderColor: Theme.colors.lightBlue
       }}
       >
@@ -108,8 +111,8 @@ _renderHeader = props => (
 );
 
 _renderScene = SceneMap({
-  0: () => <Notifiaction handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation}  />,
-  1: () => <SettingComponent navigation={this.props.navigation} />
+  0: () => <Notifiaction setModalVisible={this.setModalVisible} />,
+  1: () => <SettingComponent />
 });
 render() {
   return (
@@ -127,6 +130,33 @@ render() {
         <NotificationText>1</NotificationText>
       </NotificationContainer>
       </Tabcontainer>
+      <Modal
+      animationType="slide"
+      transparent={true}
+      visible={this.state.modalVisible}
+      >
+      <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
+        <IconContainer onPress={() => {
+              this.setModalVisible(!this.state.modalVisible);
+            }}>
+          <CustomIcon
+            name="cross"
+            fill='#000000'
+            height="15"
+            width="15"
+            />
+        </IconContainer>
+        <ScrollView>
+          <Card title={this.state.modalName=='Receive Coins'?'':this.state.modalName}>
+            {
+              this.state.modalName=='Transfer Notification'?
+              <TransferNotification navigation={this.props.navigation} />
+              :null
+            }
+          </Card>
+        </ScrollView>
+      </View>
+    </Modal>
     </MainContainer>
   );
 }

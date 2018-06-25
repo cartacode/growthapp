@@ -19,11 +19,16 @@ import {MainContainer,
   import CustomButton from '../../components/button/CustomButton';
   import CustomIcon from '../../components/icon/svgicon';
   import Card from '../../components/giftCardPopup/giftCard';
-  import SignupScreen from '../signup/SignupScreen';
+  import SignupScreen from '../signup/signupScreen';
   import LoginScreen from '../login/LoginScreen';
-  import BusinessInformation from '../business/BusinessInformation';
-  import CreateWallet from '../createwallet/CreateWalletScreen'
-  import RecoverPassword from '../recoverpassword/RecoverPassword'
+  import CreateWalletScreen  from '../createWallet/CreateWalletScreen';
+  import ForgotPasswordScreen from '../forgotpassword/ForgotPasswordScreen';
+
+  import { connect } from "react-redux";
+  import { ActionCreators } from "../../action";
+  import { bindActionCreators } from "redux";
+
+
   class HomeScreen extends React.Component {
     static navigationOptions = {
       headerVisible:false,
@@ -40,17 +45,19 @@ import {MainContainer,
      modalName:''
    }
   }
-
-  setModalVisible = (visible,modal) => {
-    this.setState({modalVisible: visible,modalName:modal});
+  componentWillMount() {
+    // this.props.demo()
   }
 
+   setModalVisible = (visible,modal) => {
+     this.setState({modalVisible: visible,modalName:modal});
+   }
     render () {
       return(
-        <ImageBackground resizeMode="cover" source={require('../../../assets/images/background_img.jpg')} style={{flex:1,width:'100%',justifyContent:'center',alignItems:'center'}}>
+        <ImageBackground resizeMode="cover" source={require('../../../assets/images/1_background_img.jpg')} style={{flex:1,width:'100%',justifyContent:'center',alignItems:'center'}}>
           <CustomIcon name="logo"/>
-          <HeadingText>Growth</HeadingText>
-          <ShopText>Powering Commerce</ShopText>
+          <HeadingText>Marketplace</HeadingText>
+          <ShopText>Shop local and be rewarded</ShopText>
           <ButtonContianer>
             <SignUpButtonContainer>
             <CustomButton
@@ -58,7 +65,6 @@ import {MainContainer,
                 this.setModalVisible(true,'Sign Up');
               }}
               fill={Theme.colors.lightBlue}
-              width="310"
               text="Create new account"
               />
             </SignUpButtonContainer>
@@ -68,42 +74,43 @@ import {MainContainer,
                 this.setModalVisible(true,'Log In');
               }}
               fill={Theme.colors.lightBlue}
-              width="310"
               text="Login"
               />
             </LoginButtonContainer>
           </ButtonContianer>
           <Modal
+          onRequestClose={()=>{}}
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
           >
           <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-            <IconContainer onPress={() => {
+            {
+               this.state.modalName === 'Create a Wallet' ?
+               null :
+              <IconContainer onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-              <CustomIcon
-                name="cross"
-                fill='#000000'
-                height="15"
-                width="15"
-                />
-            </IconContainer>
+                <CustomIcon
+                  name="cross"
+                  fill='#000000'
+                  height="15"
+                  width="15"
+                  />
+              </IconContainer>
+
+            }
             <ScrollView>
               <Card title={this.state.modalName}>
                 {
                   this.state.modalName=='Sign Up'?
                   <SignupScreen  setModalVisible={this.setModalVisible}/>
                   :this.state.modalName=='Log In'?
-                    <LoginScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
-                  : this.state.modalName=='Business Information' ?
-                <BusinessInformation navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-                : this.state.modalName=='Recover Password' ?
-                <RecoverPassword navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-                :
-                <CreateWallet navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-
-              }
+                    <LoginScreen setModalVisible={this.setModalVisible}/>
+                  :this.state.modalName=='Recover Password'?
+                    <ForgotPasswordScreen setModalVisible={this.setModalVisible} />
+                  :<CreateWalletScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
+                }
               </Card>
             </ScrollView>
           </View>
@@ -112,5 +119,16 @@ import {MainContainer,
       )
     }
   }
+  function mapDispatchToProps(dispatch) {
+    return Object.assign(
+      { dispatch: dispatch },
+      bindActionCreators(ActionCreators, dispatch)
+    );
+  }
 
-  export default HomeScreen;
+  const mapStateToProps = state => {
+    return {
+    };
+  };
+
+  export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

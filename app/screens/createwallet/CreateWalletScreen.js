@@ -29,7 +29,7 @@ import { MainContainer,
     }
     handleClick = () =>{
        this.props.setModalVisible(false);
-      this.props.navigation.navigate('Main');
+      this.props.navigation.navigate('MapRoute');
     }
 
     render () {
@@ -42,6 +42,7 @@ import { MainContainer,
           </ContentContainer>
           <ButtonContianer>
             <CustomButton
+              style={{marginBottom:20}}
               fill={Theme.colors.lightBlue}
               width="260"
               text="Get Started"

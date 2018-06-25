@@ -5,12 +5,13 @@ export const MainContainer = styled.View`
 flex:1;
 display:flex;
 justify-content:center;
-align-items:center;
 background-color:#FAFAFA;
 padding-top:20px;
 `;
 export const ContentContainer = styled.View`
-
+  margin-left:20px
+  margin-right:20px
+  margin-top:10px
 `;
 export const CardContainer = styled.View`
 padding:20px 15px 40px;
@@ -44,11 +45,6 @@ display:flex;
 flex-direction:row;
 justify-content:space-between;
 `;
-export const ButtonContainer = styled.View`
-justify-content:space-between;
-align-items:center;
-margin-top:30px;
-`;
 export const TitleText = styled.Text`
 color:${props => Theme.colors.darkGray};
 font-family:${props=> Theme.fontFamily.bold};
@@ -73,18 +69,3 @@ font-family:${props=> Theme.fontFamily.regular};
 font-size:${props=> Theme.fontSize.small};
 margin-top:6px;
 `;
-export const IconContainer = styled.TouchableOpacity`
-background-color:#ffffff;
-width:45px;
-height:45px;
-padding:11px 0px;
-position:absolute;
-top:18px;
-right:4px;
-z-index:9999999;
-border-radius:70px;
-justify-content:center;
-align-items:center;
-margin-top:10px;
-elevation:5
-`

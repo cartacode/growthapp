@@ -7,7 +7,6 @@ import {
 } from 'react-native'
 import Theme from '../../../theme';
 import { MainContainer,
-  ButtonContianer,
   ContentContainer,
   DetailText,
   TextInputContainer} from './style';
@@ -26,27 +25,16 @@ class ForgetPasswordScreen extends React.Component {
     return(
       <View style={{flex:1}}>
         <ContentContainer>
+          <DetailText>If the email entered has been registered on email will be sent</DetailText>
           <TextInputContainer>
           <TextInput
-          label="Current Password"
-          width="260" />
+          label="Email Address"
+          width="100%" />
           </TextInputContainer>
-          <TextInputContainer>
-          <TextInput
-          label="New Password"
-          width="260" />
-          </TextInputContainer>
-          <TextInputContainer>
-          <TextInput
-          label="Confrim Password"
-          width="260" />
-          </TextInputContainer>
-          <ButtonContianer>
             <CustomButton
               fill={Theme.colors.lightBlue}
-              width="260"
+              style={{marginTop:170,marginBottom:20}}
               text="Submit"/>
-          </ButtonContianer>
         </ContentContainer>
         </View>
     )

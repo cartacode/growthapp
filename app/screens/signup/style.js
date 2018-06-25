@@ -3,7 +3,6 @@ import Theme from '../../../theme';
 
 export const ContentContainer = styled.View`
 justify-content:center;
-align-items:center;
 `;
 
 export const HeadingText = styled.Text`
@@ -14,8 +13,4 @@ export const HeadingText = styled.Text`
 
 export const TextFieldContainer = styled.View`
 margin-bottom:25px
-`;
-
-export const ButtonContianer = styled.View`
- margin-top:20px;
 `;

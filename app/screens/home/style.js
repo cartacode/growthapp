@@ -31,6 +31,9 @@ export const ShopText = styled.Text`
 
 export const ButtonContianer = styled.View`
  margin-top:130px;
+ width:100%;
+ padding-left:24px;
+ padding-right:24px;
 `;
 
 export const SignUpButtonContainer = styled.TouchableOpacity``;

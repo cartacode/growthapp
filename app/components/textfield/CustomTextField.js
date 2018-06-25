@@ -16,7 +16,7 @@ const LabelText = styled.Text`
 `;
 const StyledTextInput = styled.TextInput`
     background-color:${props => Theme.colors.inputBackgroundColor};
-    width:${props => props.width}px;
+    width:${props => props.width};
     height:50px;
     padding-left:15px;
     margin-top:10px;
@@ -27,13 +27,12 @@ class CustomTextField extends React.Component {
       <View>
         <LabelText>{this.props.label}</LabelText>
           <StyledTextInput
+            value={this.props.value?this.props.value:''}
+            onChangeText={this.props.onChangeText}
             width={this.props.width }
             underlineColorAndroid="transparent"
             placeholder={this.props.placeholder}
             secureTextEntry={this.props.secureTextEntry ? this.props.secureTextEntry : false}
-            value={this.props.value}
-            onChangeText={this.props.onChangeText}
-            editable={this.props.editable ?  this.props.editable : true}
         />
       </View>
     )

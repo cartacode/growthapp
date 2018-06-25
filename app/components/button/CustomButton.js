@@ -9,30 +9,33 @@ import Theme from '../../../theme';
 
 const ButtonBackground = styled.TouchableOpacity`
     background-color:${props => props.fill ? props.fill : 'transparent'};
-    width:${props => props.width}px;
-    height:${props => props.height ? `${props.height}px` : '50px'};
+    padding:14px;
+    padding-left:0px;
+    padding-right:0px;
     border-radius:25px;
     justify-content:center;
     align-items:center;
-    border:${props => props.border ? `2px solid  ${props.border}` : '0px'};
+    flex-direction:row;
+    width:100%;
+    border:${props => props.border ? `${props.borderWidth ? props.borderWidth :'2px'} solid  ${props.border}` : '0px'};
 `;
 
 const ButtonText = styled.Text`
-    color:${props => props.textColor ? props.textColor : props.border ? props.border : Theme.colors.white};
+    color:${props => props.border ? props.border : props.textColor ? props.textColor : Theme.colors.white};
     font-family:${props=> Theme.fontFamily.bold};
-    font-size:${props=> props.fontSize ? props.fontSize : Theme.fontSize.medium};
+    font-size:${props=> Theme.fontSize.medium};
 `;
 class CustomButton  extends React.Component {
   render () {
-    console.log(this.props.onPress);
     return(
       <ButtonBackground
+        style={this.props.style}
        fill={this.props.fill}
         border={this.props.border}
+        borderWidth={this.props.borderWidth}
         width={this.props.width}
-        height={this.props.height}
         onPress={this.props.onPress}>
-          <ButtonText fontSize={this.props.fontSize} textColor={this.props.textColor} border={this.props.border}>{this.props.text}</ButtonText>
+          <ButtonText textColor={this.props.textColor} border={this.props.border}>{this.props.text}</ButtonText>
       </ButtonBackground>
     )
   }

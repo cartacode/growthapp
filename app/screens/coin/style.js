@@ -12,7 +12,7 @@ margin-top:${props => props.receiveCoin? '10px' : '20px'};
 export const ButtonContainer = styled.View`
 justify-content:center;
 align-items:center;
-margin-top:20px;
+margin-top:15px;
 `;
 
 export const LabelContainer = styled.View`

@@ -12,7 +12,6 @@ align-items:center;
 
 export const ContentContainer = styled.View`
 justify-content:center;
-align-items:center;
 `;
 
 export const TextFieldContainer = styled.View`

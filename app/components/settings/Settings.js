@@ -4,25 +4,22 @@ import {
   View,ScrollView,
   Text,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Modal
+  KeyboardAvoidingView
 } from 'react-native'
 import Theme from '../../../theme';
-import { MainSettingContainer,
+import { MainContainer,
   TextFieldContainer,
   ButtonContianer,
   ContentContainer,
   LogoutButtonContianer,
-  IconContainer,
-
 } from './style';
-import CustomIcon from '../icon/svgicon';
 import TextInput from '../textfield/CustomTextField';
 import CustomButton from '../button/CustomButton';
-import BusinessInformation from './BusinessInformation';
-import ContactInformation from './ContactInformation';
-import ForgetPasswordScreen from '../../screens/forgotpassword/ForgotPasswordScreen';
-import Card from '../giftCardPopup/giftCard';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { saveUserSettings } from './action'
+import { logOut } from '../../action/common';
+
 class SettingComponent extends React.Component {
   static navigationOptions = {
     headerVisible:false,
@@ -31,63 +28,98 @@ class SettingComponent extends React.Component {
       height:0,
     },
   }
-
   constructor(){
     super();
     this.state = {
-     modalVisible: false,
-     modalName:''
-   }
+      name:'juned',
+      email:'juned.skyward@gmail.com',
+      password:'Sky@1234',
+      confirmPassword:''
+    }
   }
-
-  setModalVisible = (visible,modal) => {
-    this.setState({modalVisible: visible,modalName:modal});
+  handleSaveSetting = () =>{
+    if(this.state.password === this.state.confirmPassword){
+      this.props.saveUserSettings(this.state);
+    }
+    else{
+      alert('Password not match')
+    }
   }
 
   render () {
+    let error = this.props.error
     return(
-      <ScrollView style={{marginTop:5}}>
-        <MainSettingContainer>
-          <BusinessInformation title={"Business Information"}/>
-          <ContactInformation  title={"Contact Information"} setModalVisible={this.setModalVisible}/>
+      <ScrollView>
+        <MainContainer>
+        {error ? <Text>{error.message}</Text>:null}
+          <ContentContainer>
+            <TextFieldContainer>
+              <TextInput
+                value={this.state.name}
+                onChangeText={(text) => this.setState({name:text})}
+                label={'Name'}
+                width={'100%'}
+                placeholder={'John Doe'} />
+            </TextFieldContainer>
+            <TextFieldContainer>
+              <TextInput
+                value={this.state.email}
+                onChangeText={(text) => this.setState({email:text})}
+                label={'Email Address'}
+                width={'100%'}
+                placeholder={'email@sample.com'}
+                />
+            </TextFieldContainer>
+            <TextFieldContainer>
+              <TextInput
+                value={this.state.password}
+                onChangeText={(text) => this.setState({password:text})}
+                label={'Password'}
+                width={'100%'}
+                secureTextEntry={true}
+                placeholder={'********'} />
+            </TextFieldContainer>
+            <TextFieldContainer>
+              <TextInput
+                value={this.state.confirmPassword}
+                onChangeText={(text) => this.setState({confirmPassword:text})}
+                label={'Confirm Password'}
+                width={'100%'}
+                secureTextEntry={true}
+                placeholder={'Re-enter your password'} />
+            </TextFieldContainer>
+            <ButtonContianer>
+              <CustomButton
+                fill={Theme.colors.lightBlue}
+                width="290"
+                onPress={this.handleSaveSetting}
+                text="Save settings"/>
+            </ButtonContianer>
+          </ContentContainer>
           <LogoutButtonContianer>
             <CustomButton
-              fill='#e63d30'
-              width="260"
+              onPress={this.props.logOut}
+              fill={Theme.colors.redBalehu}
+              width="290"
               text="Log Out"/>
           </LogoutButtonContianer>
-        </MainSettingContainer>
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={this.state.modalVisible}
-        >
-        <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-          <IconContainer onPress={() => {
-                this.setModalVisible(!this.state.modalVisible);
-              }}>
-            <CustomIcon
-              name="cross"
-              fill='#000000'
-              height="15"
-              width="15"
-              />
-          </IconContainer>
-          <ScrollView>
-            <Card title={this.state.modalName}>
-              {
-                this.state.modalName=='Change Password'?
-                <ForgetPasswordScreen  navigation={this.props.navigation} setModalVisible={this.setModalVisible}/>
-                :
-                null
-              }
-            </Card>
-          </ScrollView>
-        </View>
-      </Modal>
+        </MainContainer>
       </ScrollView>
     )
   }
 }
+function mapDispatchToProps(dispatch) {
+  return Object.assign(
+    { dispatch: dispatch },
+    bindActionCreators({ saveUserSettings,logOut }, dispatch)
+  );
+}
 
-export default SettingComponent;
+const mapStateToProps = state => {
+  let settingReducer = state.settingReducer
+  return {
+    error: settingReducer.error
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingComponent);

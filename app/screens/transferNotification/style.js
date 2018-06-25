@@ -7,7 +7,6 @@ export const MainContainer = styled.View`
 export const Container = styled.View`
   flex-direction:${props => props.buttons ? 'column' : 'row'};
   justify-content:space-between;
-  align-items:center;
   margin-top:${props => props.buttons ? '50px' : '0px'};
 `;
 export const SubContainer = styled.View`
@@ -18,9 +17,6 @@ export const SubContainer = styled.View`
 
 export const ButtonContainer = styled.View`
 margin-top:20px;
-display:flex;
-justify-content:center;
-align-items:center;
 `
 
 export const DescText = styled.Text`

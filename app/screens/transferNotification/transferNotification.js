@@ -18,14 +18,8 @@ class TransferNotification extends React.Component {
       height:0,
     },
   }
-  completeTransaction = () => {
-    this.props.handleIndexChange(1)
-    this.props.setModalVisible(false);
-    //this.props.navigation.navigate('Marketing',{index:1})
-  }
   handleClick = () =>{
-    this.props.setModalVisible(false);
-
+     this.props.setModalVisible(false);
   }
   render(){
     return(
@@ -64,7 +58,6 @@ class TransferNotification extends React.Component {
             fill={Theme.colors.lightBlue}
             width="260"
             text="Complete Transaction"
-            onPress={this.completeTransaction}
           />
         </ButtonContainer>
         </Container>

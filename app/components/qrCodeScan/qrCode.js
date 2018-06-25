@@ -19,7 +19,8 @@ class QrCodeScan extends React.Component {
   render(){
     return(
       <View>
-        <Camera
+        {
+          <Camera
           type={'back'}
           style={{
           flex: 0,
@@ -37,6 +38,7 @@ class QrCodeScan extends React.Component {
           }}
         >
         </Camera>
+      }
       </View>
     );
   }

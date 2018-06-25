@@ -3,6 +3,7 @@ import Theme from '../../../theme';
 
 
 export const ContentContainer = styled.View`
+  align-items:center
 `;
 
 export const HeadingText = styled.Text`

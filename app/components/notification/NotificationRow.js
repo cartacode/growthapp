@@ -4,7 +4,7 @@ import {
   View,ScrollView,
   Text,
   TouchableOpacity,
-  Modal
+  KeyboardAvoidingView
 } from 'react-native'
 import Theme from '../../../theme';
 import {
@@ -13,18 +13,13 @@ import {
   TitleContainer,
   SendContainer,
   UserContainer,
-  ButtonContainer,
   DateText,
   UserText,
   TitleText,
   SendText,
   TextContainer,
-  IconContainer
 } from './style';
 import CustomButton from '../button/CustomButton';
-import TransferNotification from '../../screens/transferNotification/transferNotification';
-import CustomIcon from '../icon/svgicon'
-import Card from '../giftCardPopup/giftCard';
 
 class Notification extends React.Component {
   static navigationOptions = {
@@ -34,17 +29,7 @@ class Notification extends React.Component {
       height:0,
     },
   }
-  constructor(){
-    super();
-    this.state = {
-     modalVisible: false,
-     modalName:''
-   }
-  }
 
-  setModalVisible = (visible,modal) => {
-    this.setState({modalVisible: visible,modalName:modal});
-  }
   render () {
     return(
       <ContentContainer>
@@ -72,43 +57,15 @@ class Notification extends React.Component {
                 <UserText>{this.props.username}</UserText>
               </TextContainer>
             </UserContainer>
-            <ButtonContainer>
               <CustomButton
+                style={{marginTop:20,borderWidth:1}}
                 onPress={()=>{
-                  this.setModalVisible(true,'Transfer Notification');
+                  this.props.setModalVisible(true,'Transfer Notification');
                 }}
                 border={Theme.colors.lightBlue}
-                width={280}
-                text={"View"}  />
-            </ButtonContainer>
-          </CardContainer>
-          <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          >
-          <View style={{flex:1,backgroundColor:'rgba(0,0,0,0.6)',paddingTop:50,paddingBottom:50,paddingLeft:27,paddingRight:27}}>
-            <IconContainer onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-              <CustomIcon
-                name="cross"
-                fill='#000000'
-                height="15"
-                width="15"
+                text={"View"}
                 />
-            </IconContainer>
-            <ScrollView>
-              <Card title={this.state.modalName}>
-                {
-                  this.state.modalName=='Transfer Notification'?
-                    <TransferNotification handleIndexChange={this.props.handleIndexChange} navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
-                  : null
-              }
-              </Card>
-            </ScrollView>
-          </View>
-        </Modal>
+          </CardContainer>
         </ContentContainer>
       )
     }

@@ -1,9 +1,14 @@
 import styled from "styled-components/native";
 import Theme from '../../../theme';
 
+export const HeadingTextContainer = styled.View`
+margin:0px 0px 10px 0px;
+`;
+
 export const ContentContainer = styled.View`
 display:flex;
-margin-top:-30px;
+min-height:430px;
+padding:20px;
 `;
 
 export const HeadingText = styled.Text`
@@ -16,12 +21,8 @@ export const DetailText = styled.Text`
 color:#000000;
 font-family:${props=> Theme.fontFamily.regular};
 font-size:${props=> Theme.fontSize.midregular};
-margin-top:20px;
 `;
 
-export const ButtonContianer = styled.View`
-  margin-top:40px;
-`;
 
 export const TextInputContainer = styled.View`
 margin-top:30px;
