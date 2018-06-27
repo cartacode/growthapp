@@ -18,6 +18,8 @@ import { MainContainer,
   import TextInput from '../../components/textfield/CustomTextField';
   import CustomButton from '../../components/button/CustomButton';
   import Card from '../../components/giftCardPopup/giftCard'
+  import { GetPrivateKey } from '../../EthereumLib/utils.js'
+
 
   class CreateWalletScreen extends React.Component {
     static navigationOptions = {
@@ -27,18 +29,35 @@ import { MainContainer,
         height:0,
       },
     }
+
+    constructor(){
+      super()
+      this.state = {
+        address:''
+      }
+    }
+
+    componentWillMount(){
+      let modalData = this.props.modalData;
+      if(modalData.password){
+        let password = modalData.password;
+        console.log(GetPrivateKey(password));
+      }
+    }
+
     handleClick = () =>{
        this.props.setModalVisible(false);
       this.props.navigation.navigate('MapRoute');
     }
 
     render () {
+      let wallet = this.props.modalData;
       return(
         <View style={{flex:1}}>
           <ContentContainer>
             <DetailText>Write down the backup words and store in a safe place. This is the only way to restore your Balehu Wallet if your phone is lost, stolen or upgraded.</DetailText>
             <BackupText>Write down backup phrase:</BackupText>
-            <KeyText>1BoatSLRHtKNngkdXEeobR76b53LETt</KeyText>
+            <KeyText>{this.state.address}</KeyText>
           </ContentContainer>
           <ButtonContianer>
             <CustomButton

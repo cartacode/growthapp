@@ -19,14 +19,31 @@ export function userSignUp (data) {
         })
       }else{
         if(r.code === 200){
-          let token = r.token;
+          let token = r.token; //balehu app token
           signUp(token,data).then((r,e)=>{
             console.log(r);
+            // let tokenData = {
+            //   token:r.token,
+            //   expire:r.expire,
+            //   balehuAppToken:token
+            // }
             if(r.success === true){
-              const navigateAction = StackActions.push({
-                actions: [NavigationActions.navigate({ routeName: 'Login' })],
-              })
-              dispatch(navigateAction);
+              // saveUserData(tokenData).then((r,e)=>{
+                // dispatch({
+                  // type: SAVE_USER_TOKEN,
+                  // data: tokenData
+                // })
+                // const navigateAction = StackActions.reset({
+                //           index:0,
+                //           actions: [NavigationActions.navigate({ routeName: 'MapRoute' })],
+                //         })
+                //   dispatch(navigateAction);
+              // })
+
+              // const navigateAction = StackActions.push({
+              //   routeName: 'Login',
+              // })
+              // dispatch(navigateAction);
             }
             else{
               dispatch({

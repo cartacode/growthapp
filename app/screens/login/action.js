@@ -26,7 +26,8 @@ export function login (data) {
             if(r.code==200){
               let tokenData = {
                 token:r.token,
-                expire:r.expire
+                expire:r.expire,
+                balehuAppToken:token
               }
               saveUserData(tokenData).then((r,e)=>{
                 dispatch({

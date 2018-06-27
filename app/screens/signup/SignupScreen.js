@@ -17,18 +17,7 @@ import Card from '../../components/giftCardPopup/giftCard'
 import { userSignUp } from './action'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { createWallet,getPrivateKey } from '../../EthereumLib/utils.js'
-
-let password = 'Sky@1234';
-let token='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mjk2Nzc1NTIsImlkIjoiYmFsZWh1LWFwcCIsIm9yaWdfaWF0IjoxNTI5NjczOTUyLCJyb2xlcyI6WyJhcHAiXSwidXNlci1pZCI6IiJ9.YwjLTBH6BOlwEwHwhq2p-F4KxZJUdhX19E7WVAvPffEmGDPDQZBaR4PTuRGMgP7BARPQuPgaOFAxNfzT8Yyi6TJhqEXCnikG2rGjJaKRsaWMVzbYHSe0y-VXT8qyTuI26evmR1Y-1zyXiSfVoBxDdQHWcJ7dbGGqxqJCCbe9a7T-dzz3k1GUw8j2lzeYtSPmVWKbBdFO5djeVJattHo7h8tbG09Oa0iImBAKx83kWhyuggh1UrYyOtL8Lj80JlaDI-ao197WOeFWxp8xvknFK-BiCXh1QpPpqRWnPso9-xdLO1Ybl-NgPObt0izqfMckgkDwROxlYevU5UQ-LwOvHI_9THHg1zUtZWV58Qte93GF3QdQdNLtwA26RbVZPwC15uoM9A_4Xn1e0mHBK6_fA_GSgyTkplfR7aII9GBQweplqw9wN5jUiFSwF3DLRDv1lelb89tPQ74McyFmwP5T5Wsm-oJQJ04QAfbV-VRFUvhVwadN1e_awSyYY8tka0KIoIA9OCUjOfJW7NoYNhuqgWy2OVNJeleCg8VCX3FyoASoczgkd_LJsZMfiiLmvEIbrWdG6LNYmahD77Cfe0ukZLznOhvtxeZJVVtuNOChNHK2F5oPZAFL5r8wFT9sC6TZbXtYPATNSs1QEkgQJdE8ic38qdb9G3zLgxLJL2XrFx8'
-let BalehuAddress = '0x8e867f1d7176482ecd2730b3a465e6b7cd128aec'
-
-try {
-  let data = createWallet(password,token,BalehuAddress)
-  console.log(data);
-} catch (e) {
-    console.log(e);
-}
+// import { createWallet } from '../../EthereumLib/utils.js'
 
   class SignupScreen extends React.Component {
     static navigationOptions = {
@@ -51,11 +40,12 @@ try {
 
     handleSignUp = () => {
       if(this.state.password === this.state.confirmPassword){
-        this.props.userSignUp({
-          name:this.state.name,
-          email:this.state.email,
-          password:this.state.password
-        });
+        this.props.setModalVisible(true,'',{password:this.state.password})
+        // this.props.userSignUp({
+        //   name:this.state.name,
+        //   email:this.state.email,
+        //   password:this.state.password
+        // });
       }else {
         alert('Password not match')
       }

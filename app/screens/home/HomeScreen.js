@@ -42,15 +42,20 @@ import {MainContainer,
     super();
     this.state = {
      modalVisible: false,
-     modalName:''
+     modalName:'',
+     modalData:null
    }
   }
   componentWillMount() {
     // this.props.demo()
   }
 
-   setModalVisible = (visible,modal) => {
-     this.setState({modalVisible: visible,modalName:modal});
+   setModalVisible = (visible,modal,data) => {
+     this.setState({
+       modalVisible:visible,
+       modalName:modal,
+       modalData:data
+     });
    }
     render () {
       return(
@@ -109,7 +114,7 @@ import {MainContainer,
                     <LoginScreen setModalVisible={this.setModalVisible}/>
                   :this.state.modalName=='Recover Password'?
                     <ForgotPasswordScreen setModalVisible={this.setModalVisible} />
-                  :<CreateWalletScreen navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
+                  :<CreateWalletScreen modalData={this.state.modalData} navigation={this.props.navigation} setModalVisible={this.setModalVisible} />
                 }
               </Card>
             </ScrollView>
